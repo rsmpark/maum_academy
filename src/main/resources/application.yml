@@ -1,0 +1,45 @@
+spring:
+#  profiles:
+#    active: "local"
+#    active: "dev"
+  mvc:
+    async:
+      request-timeout: -1
+  application:
+    name: maumAcademy
+
+  datasource:
+    hikari:
+      jdbc-url: jdbc:mysql://localhost:3306/maumacademy
+
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: root
+      password: Park-sang1
+      pool-name: hikari-cp
+      minimum-idle: 5
+      maximum-pool-size: 10
+      idle-timeout: 10000
+      connection-timeout: 10000
+      validation-timeout: 10000
+      max-lifetime: 580000
+      data-source-properties:
+        cachePrepStmts: true
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
+        useServerPrepStmts: true
+  jpa:
+    hibernate:
+      ddl-auto: update
+    generate-ddl: true
+    show-sql: false
+    database: mysql
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+
+server:
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
