@@ -186,7 +186,7 @@
                             <dd>
                                 <ol class="lst_olBox">
                                     <li>
-                                        <a class="active" href="#none">
+                                        <a class="active mod_1" href="#">
                                             <span class="num">01</span>
                                             <span class="ico"><img th:src="@{images/ico_curri0101.svg}"
                                                                    alt="Background&Framework"></span>
@@ -195,7 +195,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#none">
+                                        <a class="mod_2" href="#">
                                             <span class="num">02</span>
                                             <span class="ico"><img th:src="@{images/ico_curri0102.svg}"
                                                                    alt="Cloud AI"></span>
@@ -204,7 +204,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#none">
+                                        <a class="mod_3" href="#">
                                             <span class="num">03</span>
                                             <span class="ico"><img th:src="@{images/ico_curri0103.svg}"
                                                                    alt="Application"></span>
@@ -217,85 +217,44 @@
                         </dl>
                         <div class="courseBox">
                             <h4>강의목록</h4>
-                            <ul class="lst">
-                                <li class="active">
+                            <ul class="lst mod_1 active">
+                                <li th:class="${iStat.count == 1} ? 'active' : ''"
+                                    th:each="course, iStat : ${courses1}">
                                     <a href="#none">
-                                        <span class="num">Course 01.</span>
-                                        <span class="tit">마인즈랩</span>
+                                        <span class="num" th:if="${iStat.index < 9}"
+                                              th:text="${'Course 0' + iStat.count + '.'}"></span>
+                                        <span class="num" th:if="${iStat.index >= 9}"
+                                              th:text="${'Course ' + iStat.count + '.'}"></span>
+                                        <span class="tit" th:text="${course.name}"></span>
                                     </a>
-                                    <ul class="lst_hide">
-                                        <li><a href="maum_kr_academy_view.html"><strong>contents01.</strong>하나도 놓치지 않고
-                                            회의록을 작성해주는 인공지능이 있다고?</a></li>
-                                        <li><a href="maum_kr_academy_view.html"><strong>contents02.</strong>회의록 요새 누가
-                                            타이핑하니? 자동으로 내 노트북에 저장</a></li>
-                                        <li><a href="maum_kr_academy_view.html"><strong>contents03.</strong>회의록 작성? 손으로
-                                            하지마세요 이제는 인공지능에 맡긴다! </a></li>
-                                        <li><a href="maum_kr_academy_view.html"><strong>contents04.</strong>[마음AI세미나]
-                                            2부- 비즈니스의 일상을 바꾸는 AI, ‘MAUM 회의록’</a></li>
+                                    <ul class="lst_hide" th:each="content, iStat : ${course.contents}">
+                                        <li>
+                                            <a  th:href="@{/content(id=${content.id},course=${content.course.id})}"  th:inline="text">
+                                                <strong>contents [[${iStat.count}]]</strong>
+                                                [[${content.name}]]
+                                            </a>
+                                        </li>
                                     </ul>
                                 </li>
-                                <li>
+                            </ul>
+
+                            <ul class="lst mod_2 ">
+                                <li th:class="${iStat.count == 1} ? 'active' : ''"
+                                    th:each="course, iStat : ${courses2}">
                                     <a href="#none">
-                                        <span class="num">Course 02.</span>
-                                        <span class="tit">인공지능의 이해</span>
+                                        <span class="num" th:if="${iStat.index < 9}"
+                                              th:text="${'Course 0' + iStat.count + '.'}"></span>
+                                        <span class="num" th:if="${iStat.index >= 9}"
+                                              th:text="${'Course ' + iStat.count + '.'}"></span>
+                                        <span class="tit" th:text="${course.name}"></span>
                                     </a>
-                                    <ul class="lst_hide">
-                                        <li><a href="maum_kr_academy_view.html"><strong>contents01.</strong>하나도 놓치지 않고
-                                            회의록을 작성해주는 인공지능이 있다고?</a></li>
-                                        <li><a href="maum_kr_academy_view.html"><strong>contents02.</strong>회의록 요새 누가
-                                            타이핑하니? 자동으로 내 노트북에 저장</a></li>
-                                        <li><a href="maum_kr_academy_view.html"><strong>contents03.</strong>회의록 작성? 손으로
-                                            하지마세요 이제는 인공지능에 맡긴다! </a></li>
-                                        <li><a href="maum_kr_academy_view.html"><strong>contents04.</strong>[마음AI세미나]
-                                            2부- 비즈니스의 일상을 바꾸는 AI, ‘MAUM 회의록’</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#none">
-                                        <span class="num">Course 03.</span>
-                                        <span class="tit">maum.ai 비즈니스</span>
-                                    </a>
-                                    <ul class="lst_hide">
-                                        <li><a href="maum_kr_academy_view.html"><strong>contents01.</strong>하나도 놓치지 않고
-                                            회의록을 작성해주는 인공지능이 있다고?</a></li>
-                                        <li><a href="maum_kr_academy_view.html"><strong>contents02.</strong>회의록 요새 누가
-                                            타이핑하니? 자동으로 내 노트북에 저장</a></li>
-                                        <li><a href="maum_kr_academy_view.html"><strong>contents03.</strong>회의록 작성? 손으로
-                                            하지마세요 이제는 인공지능에 맡긴다! </a></li>
-                                        <li><a href="maum_kr_academy_view.html"><strong>contents04.</strong>[마음AI세미나]
-                                            2부- 비즈니스의 일상을 바꾸는 AI, ‘MAUM 회의록’</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#none">
-                                        <span class="num">Course 04.</span>
-                                        <span class="tit">maum.ai 플랫폼</span>
-                                    </a>
-                                    <ul class="lst_hide">
-                                        <li><a href="maum_kr_academy_view.html"><strong>contents01.</strong>하나도 놓치지 않고
-                                            회의록을 작성해주는 인공지능이 있다고?</a></li>
-                                        <li><a href="maum_kr_academy_view.html"><strong>contents02.</strong>회의록 요새 누가
-                                            타이핑하니? 자동으로 내 노트북에 저장</a></li>
-                                        <li><a href="maum_kr_academy_view.html"><strong>contents03.</strong>회의록 작성? 손으로
-                                            하지마세요 이제는 인공지능에 맡긴다! </a></li>
-                                        <li><a href="maum_kr_academy_view.html"><strong>contents04.</strong>[마음AI세미나]
-                                            2부- 비즈니스의 일상을 바꾸는 AI, ‘MAUM 회의록’</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#none">
-                                        <span class="num">Course 05.</span>
-                                        <span class="tit">Success Story</span>
-                                    </a>
-                                    <ul class="lst_hide">
-                                        <li><a href="maum_kr_academy_view.html"><strong>contents01.</strong>하나도 놓치지 않고
-                                            회의록을 작성해주는 인공지능이 있다고?</a></li>
-                                        <li><a href="maum_kr_academy_view.html"><strong>contents02.</strong>회의록 요새 누가
-                                            타이핑하니? 자동으로 내 노트북에 저장</a></li>
-                                        <li><a href="maum_kr_academy_view.html"><strong>contents03.</strong>회의록 작성? 손으로
-                                            하지마세요 이제는 인공지능에 맡긴다! </a></li>
-                                        <li><a href="maum_kr_academy_view.html"><strong>contents04.</strong>[마음AI세미나]
-                                            2부- 비즈니스의 일상을 바꾸는 AI, ‘MAUM 회의록’</a></li>
+                                    <ul class="lst_hide" th:each="content, iStat : ${course.contents}">
+                                        <li>
+                                            <a th:href="@{/content(id=${content.id},course=${content.course.id})}" th:inline="text">
+                                                <strong>contents 0[[${iStat.count}]].</strong>
+                                                [[${content.name}]]
+                                            </a>
+                                        </li>
                                     </ul>
                                 </li>
                             </ul>
@@ -560,6 +519,10 @@
                         $('.bg_grayBox dl dd .lst_olBox a').removeClass('active');
                         $(this).addClass('active');
 
+                        $('.courseBox .lst').removeClass('active');
+                        $('.courseBox .lst').eq($(this).parent().index()).addClass('active')
+
+
                         var courseHeight = $('.courseBox').offset().top;
 
                         $('html').animate({
@@ -569,8 +532,11 @@
 
                     //course
                     $('.courseBox .lst >li> a').on('click', function () {
-                        $('.courseBox .lst >li').removeClass('active');
+                        $(this).parent().siblings().removeClass('active')
+                        // $('.courseBox .lst >li').removeClass('active');
                         $(this).parent().addClass('active');
+
+                        console.log("ASD")
 
                         var ojtOffset = $(this).offset().top,
                             winHeight = $(window).height() / 2;

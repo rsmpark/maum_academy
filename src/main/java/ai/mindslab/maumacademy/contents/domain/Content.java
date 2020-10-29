@@ -1,17 +1,14 @@
 package ai.mindslab.maumacademy.contents.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "content")
 public class Content {
@@ -20,16 +17,27 @@ public class Content {
     @Column(name="id", columnDefinition = "int(3)")
     private int id;
 
-    @Column(name ="name", columnDefinition = "varchar(50)")
+    @Column(name ="name", columnDefinition = "varchar(100)")
     private String name;
 
     @Column(name ="description", columnDefinition = "varchar(200)")
     private String description;
 
-    @ManyToOne
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="course_id", nullable=false)
     private Course course;
 
     @OneToMany(mappedBy="content")
     private List<ContentFile> contentFiles;
+
+    @Override
+    public String toString() {
+        return "Content{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", course=" + course +
+                '}';
+    }
 }

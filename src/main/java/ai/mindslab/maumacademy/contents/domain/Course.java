@@ -1,17 +1,17 @@
 package ai.mindslab.maumacademy.contents.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.util.List;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "course")
 public class Course {
@@ -23,11 +23,20 @@ public class Course {
     @Column(name ="name", columnDefinition = "varchar(50)")
     private String name;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="module_id", nullable=false)
     private Module module;
 
-
     @OneToMany(mappedBy="course")
     private List<Content> contents;
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", module=" + module +
+                '}';
+    }
 }

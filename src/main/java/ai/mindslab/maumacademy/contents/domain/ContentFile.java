@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -17,8 +16,8 @@ public class ContentFile {
     @Column(name="id", columnDefinition = "int(3)")
     private int id;
 
-    @Column(name ="name", columnDefinition = "varchar(50)")
-    private String name;
+    @Column(name ="file_type", columnDefinition = "varchar(50)")
+    private String fileType;
 
     @Column(name="url")
     private String url;
@@ -27,7 +26,10 @@ public class ContentFile {
     @JoinColumn(name="type")
     private ContentType type;
 
-    @ManyToOne
+    @Column(name ="has_audio", columnDefinition = "varchar(1)")
+    private String hasAudio = "n";
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="content_id", nullable=false)
     private Content content;
 }

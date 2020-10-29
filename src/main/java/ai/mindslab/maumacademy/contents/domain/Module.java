@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.List;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -24,4 +23,12 @@ public class Module {
 
     @OneToMany(mappedBy="module")
     private List<Course> items;
+
+    @Override
+    public String toString() {
+        return "Module{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

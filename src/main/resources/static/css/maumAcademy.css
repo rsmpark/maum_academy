@@ -112,6 +112,8 @@
 .courseBox .lst li .lst_hide li a:hover {color:#3599ff; transition:all 0.3s ease-out;}
 .courseBox .lst li .lst_hide li a strong {display:inline-block; margin:0 10px 0 0; color:#98a7b7; font-weight:400;}
 
+.courseBox .lst.active {display: block}
+.courseBox .lst {display: none}
 .courseBox .lst >li.active { border:1px solid #3599ff;}
 .courseBox .lst >li.active >a {color:#3599ff; font-weight:700; background:#f2f6ff;}
 .courseBox .lst >li.active >a:after {transform:rotate(180deg);}
