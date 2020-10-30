@@ -1,7 +1,6 @@
 spring:
   profiles:
-    active: "local"
-#        active: "dev"
+    active: dev
   mvc:
     async:
       request-timeout: -1
@@ -29,3 +28,6 @@ server:
       charset: UTF-8
       enabled: true
       force: true
+
+maumAcademy:
+  url: http://localhost:8081
