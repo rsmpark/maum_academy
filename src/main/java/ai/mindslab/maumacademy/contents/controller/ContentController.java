@@ -10,10 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 @Controller
 @RequestMapping("/content")
@@ -42,6 +40,20 @@ public class ContentController {
         modelAndView.addObject("relatedContents", filteredContent);
 
         List<ContentFile> contentFiles = contentService.getContentFilesByContentId(contentId);
+
+        List<String> videoUrls = new ArrayList<>();
+        List<String> pdfUrls = new ArrayList<>();
+
+        contentFiles.forEach(contentFile -> {
+            if(contentFile.getFileType().equals("pdf")){
+                pdfUrls.add(contentFile.getUrl());
+            } else{
+                videoUrls.add(contentFile.getUrl());
+            }
+        });
+
+        modelAndView.addObject("videoUrls", videoUrls);
+        modelAndView.addObject("pdfUrls", pdfUrls);
         modelAndView.addObject("files", contentFiles);
 
         modelAndView.setViewName("content");

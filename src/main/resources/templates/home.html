@@ -230,7 +230,8 @@
                                     <ul class="lst_hide" th:each="content, iStat : ${course.contents}">
                                         <li>
                                             <a  th:href="@{/content(id=${content.id},course=${content.course.id})}"  th:inline="text">
-                                                <strong>contents [[${iStat.count}]]</strong>
+                                                <strong  th:if="${iStat.index < 9}">contents 0[[${iStat.count}]].</strong>
+                                                <strong  th:if="${iStat.index >= 9}">contents [[${iStat.count}]].</strong>
                                                 [[${content.name}]]
                                             </a>
                                         </li>
@@ -251,7 +252,30 @@
                                     <ul class="lst_hide" th:each="content, iStat : ${course.contents}">
                                         <li>
                                             <a th:href="@{/content(id=${content.id},course=${content.course.id})}" th:inline="text">
-                                                <strong>contents 0[[${iStat.count}]].</strong>
+                                                <strong  th:if="${iStat.index < 9}">contents 0[[${iStat.count}]].</strong>
+                                                <strong  th:if="${iStat.index >= 9}">contents [[${iStat.count}]].</strong>
+                                                [[${content.name}]]
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+
+                            <ul class="lst mod_3 ">
+                                <li th:class="${iStat.count == 1} ? 'active' : ''"
+                                    th:each="course, iStat : ${courses3}">
+                                    <a href="#none">
+                                        <span class="num" th:if="${iStat.index < 9}"
+                                              th:text="${'Course 0' + iStat.count + '.'}"></span>
+                                        <span class="num" th:if="${iStat.index >= 9}"
+                                              th:text="${'Course ' + iStat.count + '.'}"></span>
+                                        <span class="tit" th:text="${course.name}"></span>
+                                    </a>
+                                    <ul class="lst_hide" th:each="content, iStat : ${course.contents}">
+                                        <li>
+                                            <a th:href="@{/content(id=${content.id},course=${content.course.id})}" th:inline="text">
+                                                <strong  th:if="${iStat.index < 9}">contents 0[[${iStat.count}]].</strong>
+                                                <strong  th:if="${iStat.index >= 9}">contents [[${iStat.count}]].</strong>
                                                 [[${content.name}]]
                                             </a>
                                         </li>
@@ -511,7 +535,7 @@
             });
         </script>
         <!-- Local Script -->
-        <script type="text/javascript">
+        <script type="text/javascript" >
             jQuery.event.add(window, "load", function () {
                 $(document).ready(function () {
                     //curriculum

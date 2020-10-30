@@ -163,7 +163,7 @@
                             <li><a class="active" href="#none" th:text="${selectedContent.name}"></a></li>
                             <li th:each="content, iStat : ${relatedContents}">
                                 <a th:href="@{/content(id=${content.id},course=${content.course.id})}"
-                                   th:text="${content.name()}"></a>
+                                   th:text="${content.name}"></a>
                             </li>
                         </ul>
                     </div>
@@ -175,11 +175,14 @@
                 <div class="contents">
                     <!-- .lect_tit(강의제목) -->
                     <div class="lect_tit">
-                        <h3 th:inline="text"><strong>Contents 0[[${selectedIndex}]].</strong>[[${selectedContent.name}]]</h3>
+                        <h3 th:inline="text"><strong>Contents 0[[${selectedIndex}]].</strong>[[${selectedContent.name}]]
+                        </h3>
                         <ul class="lect_tab">
-                            <li th:each="file : ${files}">
-                                <a class="active" href="#none" th:if="${file.fileType == 'pdf'}">PDF로 보기</a>
-                                <a class="active" href="#none" th:if="${file.fileType == 'video'}">영상으로 보기</a>
+                            <li>
+                                <a class="active pdf_tab" href="#none" th:if="${pdfUrls.size() > 0}">PDF로 보기</a>
+                            </li>
+                            <li>
+                                <a class="active video_tab" href="#none" th:if="${videoUrls.size() > 0}">영상으로 보기</a>
                             </li>
                         </ul>
                     </div>
@@ -187,14 +190,29 @@
                     <!-- .lect_objt(학습목표) -->
                     <dl class="lect_objt">
                         <dt>학습목표</dt>
-                        <dd>마인즈랩 인공지능 교육 플랫폼, 마음 아카데미에 오신 것을 환영합니다. 우리나라를 대표하는 AI전문기업, 마인즈랩에 대해서 알아봅니다.</dd>
+                        <dd th:text="${selectedContent.description}"></dd>
                     </dl>
                     <!-- .lect_objt -->
                     <!-- .lect_cont(강의내용) -->
                     <div class="lect_cont">
                         <!-- PDF -->
-                        <div id="pdfViewer1" class="pdfBox"></div>
+                        <div th:id="${'pdfViewer' + iStat.count}" class="pdfBox"
+                             th:each="pdf, iStat : ${pdfUrls}"></div>
                         <!-- //PDF -->
+
+                        <!-- video-->
+                        <div class="videoBox" th:each="videoUrl, iStat:${videoUrls}">
+                            <iframe width="100%" height="600px" th:src="${videoUrl}"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen></iframe>
+                        </div>
+                        <!-- //video -->
+
+                        <ul class="lect_btn">
+                            <li><a th:href="${@environment.getProperty('maumAcademy.url')}">홈으로</a></li>
+                        </ul>
+
                     </div>
                     <!-- //.lect_cont -->
                 </div>
@@ -269,20 +287,54 @@
             });
         </script>
         <!-- Local Script -->
-        <script type="text/javascript">
+        <script type="text/javascript" th:inline="javascript">
             jQuery.event.add(window, "load", function () {
                 $(document).ready(function () {
-                    //PDF
-                    var pdfViewer1 = ('#pdfViewer1');
-                    PDFObject.embed('http://www.africau.edu/images/default/sample.pdf', pdfViewer1);
+                    $('.lect_cont .pdfBox').show();
+                    $('.lect_cont .videoBox').hide();
 
-                    //player
+                    var pdfUrls = [[${pdfUrls}]]
+                    var videosUrls = [[${videoUrls}]]
+
+
+                    if(pdfUrls.length > 0){
+                        if(videosUrls.length > 0){
+                            $('.lect_tit .lect_tab li .video_tab').removeClass('active')
+                        }
+                        for (let i = 0; i < pdfUrls.length; i++) {
+                            PDFObject.embed("pdf/" + pdfUrls[i], "#pdfViewer" + (i + 1));
+                        }
+                    } else{
+                        if(videosUrls.length > 0){
+                            $('.lect_cont .videoBox').show();
+                            $('.lect_cont .pdfBox').hide();
+                        }
+                    }
+
+
+                    // Audio Player
                     $('audio').audioPlayer();
                     $('.btn_player_play').on('click', function () {
                         $(this).toggleClass('pause');
                     });
+
+                    // Lecture Tab Buttons
+                    $('.lect_tit .lect_tab li').on('click', function () {
+                        $(this).parent().find('a').removeClass('active')
+                        if ($(this).index() == 0) {
+                            $('.lect_cont .pdfBox').show();
+                            $('.lect_cont .videoBox').hide();
+                            $(this).find('a').addClass('active')
+                        } else {
+                            $('.lect_cont .pdfBox').hide();
+                            $('.lect_cont .videoBox').show();
+                            $(this).find('a').addClass('active')
+                        }
+                    })
+
                 });
-            });
+            })
+            ;
         </script>
     </body>
 </html>
