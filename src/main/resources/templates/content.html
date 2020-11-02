@@ -209,132 +209,157 @@
                         </div>
                         <!-- //video -->
 
+                        <!-- attachBox-->
+                        <div class="attachBox" th:if="${audioAttachList.size() > 0}"
+                             th:each="audioAttach : ${audioAttachList}">
+
+                            <p>음성 첨부자료<span>(pdf 페이지에 있는 음성파일입니다. 페이지를 확인하여 음성파일을 재생해보세요.)</span></p>
+
+                            <div class="attach" th:each="pageDetails : ${audioAttach.value}">
+                                <h4><span th:inline="text">[[${pageDetails.key.pageNum}]]p </span> [[${pageDetails.key.pageTitle}]]
+                                </h4>
+                                <dl th:each="attachFiles :${pageDetails.value}">
+                                    <dt  th:text="${attachFiles.key}"></dt>
+                                    <dd>
+                                        <ol>
+                                            <li th:each="attachedFile : ${attachFiles.value}" th:inline="text">
+                                                [[${attachedFile.subheading}]]
+                                                <audio preload="auto" controls>
+                                                    <source src="resources/audio/aekukka.mp3">
+                                                </audio>
+                                            </li>
+                                        </ol>
+                                    </dd>
+                                </dl>
+                            </div>
+                            <!--//attachBox-->
+
+
+                        </div>
+                        <!-- //.lect_cont -->
                         <ul class="lect_btn">
                             <li><a th:href="${@environment.getProperty('maumAcademy.url')}">홈으로</a></li>
                         </ul>
-
                     </div>
-                    <!-- //.lect_cont -->
+                    <!-- //.contents -->
                 </div>
-                <!-- //.contents -->
+                <!-- //#container -->
+                <hr>
+                <!-- #footer -->
+                <div id="footer"></div>
+                <!-- //#footer -->
             </div>
-            <!-- //#container -->
-            <hr>
-            <!-- #footer -->
-            <div id="footer"></div>
-            <!-- //#footer -->
-        </div>
-        <!-- //#wrap -->
+            <!-- //#wrap -->
 
-        <!-- 문의하기 -->
-        <div id="lyr_contact_us" class="lyrBox contactBox">
-            <div class="contact_tit">
-                <h3>마음 아카데미 문의하기</h3>
-                <p class="info_txt">서비스에 관련된 문의를 남겨주시면 담당자가 확인 후, 답변 메일을 보내드리겠습니다.</p>
-            </div>
-            <div class="contact_cnt">
-                <ul class="contact_lst">
-                    <li><a href="tel:1661-3222">1661-3222</a></li>
-                    <li><span>maum_academy@mindslab.ai</span></li>
-                </ul>
-                <div class="contact_form">
-                    <div class="contact_item">
-                        <input type="text" id="user_name" class="ipt_txt" autocomplete="off">
-                        <label for="user_name">
-                            <span class="fas fa-user"></span>이름
-                        </label>
-                    </div>
-                    <div class="contact_item">
-                        <input type="text" id="user_email" class="ipt_txt" autocomplete="off">
-                        <label for="user_email">
-                            <span class="fas fa-envelope"></span>이메일
-                        </label>
-                    </div>
-                    <div class="contact_item">
-                        <input type="text" id="user_phone" class="ipt_txt" autocomplete="off">
-                        <label for="user_phone">
-                            <span class="fas fa-mobile-alt"></span>연락처
-                        </label>
-                    </div>
-                    <div class="contact_item_block">
-                        <textarea id="user_txt" class="textArea" rows="6"></textarea>
-                        <label for="user_txt"><span class="fas fa-align-left"></span>문의내용</label>
-                        <p class="msg">※ 문의내용에 욕설, 성희롱 등의 내용이 포함된 경우 문의가 제한될 수 있습니다.</p>
+            <!-- 문의하기 -->
+            <div id="lyr_contact_us" class="lyrBox contactBox">
+                <div class="contact_tit">
+                    <h3>마음 아카데미 문의하기</h3>
+                    <p class="info_txt">서비스에 관련된 문의를 남겨주시면 담당자가 확인 후, 답변 메일을 보내드리겠습니다.</p>
+                </div>
+                <div class="contact_cnt">
+                    <ul class="contact_lst">
+                        <li><a href="tel:1661-3222">1661-3222</a></li>
+                        <li><span>maum_academy@mindslab.ai</span></li>
+                    </ul>
+                    <div class="contact_form">
+                        <div class="contact_item">
+                            <input type="text" id="user_name" class="ipt_txt" autocomplete="off">
+                            <label for="user_name">
+                                <span class="fas fa-user"></span>이름
+                            </label>
+                        </div>
+                        <div class="contact_item">
+                            <input type="text" id="user_email" class="ipt_txt" autocomplete="off">
+                            <label for="user_email">
+                                <span class="fas fa-envelope"></span>이메일
+                            </label>
+                        </div>
+                        <div class="contact_item">
+                            <input type="text" id="user_phone" class="ipt_txt" autocomplete="off">
+                            <label for="user_phone">
+                                <span class="fas fa-mobile-alt"></span>연락처
+                            </label>
+                        </div>
+                        <div class="contact_item_block">
+                            <textarea id="user_txt" class="textArea" rows="6"></textarea>
+                            <label for="user_txt"><span class="fas fa-align-left"></span>문의내용</label>
+                            <p class="msg">※ 문의내용에 욕설, 성희롱 등의 내용이 포함된 경우 문의가 제한될 수 있습니다.</p>
+                        </div>
                     </div>
                 </div>
+                <div class="contact_btn">
+                    <button id="btn_sendMail" class="btn_inquiry">문의하기</button>
+                    <button class="btn_lyr_close">닫기</button>
+                </div>
             </div>
-            <div class="contact_btn">
-                <button id="btn_sendMail" class="btn_inquiry">문의하기</button>
-                <button class="btn_lyr_close">닫기</button>
-            </div>
-        </div>
-        <!-- //문의하기 -->
+            <!-- //문의하기 -->
 
-        <!-- -------------------- Local Resources -------------------- -->
-        <!-- Local CSS -->
-        <link rel="stylesheet" type="text/css" th:href="@{css/maumAcademy.css}">
-        <!-- Local Script Library -->
-        <script type="text/javascript" th:src="@{js/pdfobject.js}"></script>
-        <script type="text/javascript" th:src="@{js/player.js}"></script>
-        <script type="text/javascript" th:src="@{js/maumAcademy.js}"></script>
-        <!-- page Landing -->
-        <script type="text/javascript">
-            $(window).load(function () {
-                //page loading delete
-                $('#pageldg').addClass('pageldg_hide').delay(300).queue(function () {
-                    $(this).remove();
-                });
-            });
-        </script>
-        <!-- Local Script -->
-        <script type="text/javascript" th:inline="javascript">
-            jQuery.event.add(window, "load", function () {
-                $(document).ready(function () {
-                    $('.lect_cont .pdfBox').show();
-                    $('.lect_cont .videoBox').hide();
-
-                    var pdfUrls = [[${pdfUrls}]]
-                    var videosUrls = [[${videoUrls}]]
-
-
-                    if(pdfUrls.length > 0){
-                        if(videosUrls.length > 0){
-                            $('.lect_tit .lect_tab li .video_tab').removeClass('active')
-                        }
-                        for (let i = 0; i < pdfUrls.length; i++) {
-                            PDFObject.embed("pdf/" + pdfUrls[i], "#pdfViewer" + (i + 1));
-                        }
-                    } else{
-                        if(videosUrls.length > 0){
-                            $('.lect_cont .videoBox').show();
-                            $('.lect_cont .pdfBox').hide();
-                        }
-                    }
-
-
-                    // Audio Player
-                    $('audio').audioPlayer();
-                    $('.btn_player_play').on('click', function () {
-                        $(this).toggleClass('pause');
+            <!-- -------------------- Local Resources -------------------- -->
+            <!-- Local CSS -->
+            <link rel="stylesheet" type="text/css" th:href="@{css/maumAcademy.css}">
+            <!-- Local Script Library -->
+            <script type="text/javascript" th:src="@{js/pdfobject.js}"></script>
+            <script type="text/javascript" th:src="@{js/player.js}"></script>
+            <script type="text/javascript" th:src="@{js/maumAcademy.js}"></script>
+            <!-- page Landing -->
+            <script type="text/javascript">
+                $(window).load(function () {
+                    //page loading delete
+                    $('#pageldg').addClass('pageldg_hide').delay(300).queue(function () {
+                        $(this).remove();
                     });
-
-                    // Lecture Tab Buttons
-                    $('.lect_tit .lect_tab li').on('click', function () {
-                        $(this).parent().find('a').removeClass('active')
-                        if ($(this).index() == 0) {
-                            $('.lect_cont .pdfBox').show();
-                            $('.lect_cont .videoBox').hide();
-                            $(this).find('a').addClass('active')
-                        } else {
-                            $('.lect_cont .pdfBox').hide();
-                            $('.lect_cont .videoBox').show();
-                            $(this).find('a').addClass('active')
-                        }
-                    })
-
                 });
-            })
-            ;
-        </script>
+            </script>
+            <!-- Local Script -->
+            <script type="text/javascript" th:inline="javascript">
+                jQuery.event.add(window, "load", function () {
+                    $(document).ready(function () {
+                        $('.lect_cont .pdfBox').show();
+                        $('.lect_cont .videoBox').hide();
+
+                        var pdfUrls = [[${pdfUrls}]]
+                        var videosUrls = [[${videoUrls}]]
+
+
+                        if (pdfUrls.length > 0) {
+                            if (videosUrls.length > 0) {
+                                $('.lect_tit .lect_tab li .video_tab').removeClass('active')
+                            }
+                            for (let i = 0; i < pdfUrls.length; i++) {
+                                PDFObject.embed("pdf/" + pdfUrls[i], "#pdfViewer" + (i + 1));
+                            }
+                        } else {
+                            if (videosUrls.length > 0) {
+                                $('.lect_cont .videoBox').show();
+                                $('.lect_cont .pdfBox').hide();
+                            }
+                        }
+
+
+                        // Audio Player
+                        $('audio').audioPlayer();
+                        $('.btn_player_play').on('click', function () {
+                            $(this).toggleClass('pause');
+                        });
+
+                        // Lecture Tab Buttons
+                        $('.lect_tit .lect_tab li').on('click', function () {
+                            $(this).parent().find('a').removeClass('active')
+                            if ($(this).index() == 0) {
+                                $('.lect_cont .pdfBox').show();
+                                $('.lect_cont .videoBox').hide();
+                                $(this).find('a').addClass('active')
+                            } else {
+                                $('.lect_cont .pdfBox').hide();
+                                $('.lect_cont .videoBox').show();
+                                $(this).find('a').addClass('active')
+                            }
+                        })
+
+                    });
+                })
+                ;
+            </script>
     </body>
 </html>
