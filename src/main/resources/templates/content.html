@@ -14,8 +14,8 @@
         <meta property="og:image" content="https://maum.ai/aiaas/common/images/maum.ai_web.png"/>
         <meta property="og:description" content="웹인공지능이 필요할땐 마음AI"/>
         <!-- icon_favicon -->
-        <link rel="apple-touch-icon-precomposed" href="https://maum.ai/aiaas/kr/images/ico_maumAI_60x60.png">
-        <link rel="shortcut icon" type="image/x-icon" href="https://maum.ai/aiaas/kr/images/ico_maumAI_60x60.ico">
+        <link rel="apple-touch-icon-precomposed" th:href="@{https://maum.ai/aiaas/kr/images/ico_maumAI_60x60.png}">
+        <link rel="shortcut icon" type="image/x-icon" th:href="@{https://maum.ai/aiaas/kr/images/ico_maumAI_60x60.ico}">
 
         <!-- -------------------- General Resources -------------------- -->
         <!-- General CSS -->
@@ -45,7 +45,7 @@
         <!-- //.page loading -->
 
         <!-- #wrap -->
-        <div id="wrap" class="maumUI transform">
+        <div id="wrap" class="maumUI">
             <!-- #header -->
             <div id="header">
                 <!-- .maum_sta -->
@@ -210,36 +210,67 @@
                         <!-- //video -->
 
                         <!-- attachBox-->
-                        <div class="attachBox" th:if="${audioAttachList.size() > 0}"
+                        <div class="attachBox audioAttach" th:if="${audioAttachList.size() > 0}"
                              th:each="audioAttach : ${audioAttachList}">
 
                             <p>음성 첨부자료<span>(pdf 페이지에 있는 음성파일입니다. 페이지를 확인하여 음성파일을 재생해보세요.)</span></p>
 
                             <div class="attach" th:each="pageDetails : ${audioAttach.value}">
-                                <h4><span th:inline="text">[[${pageDetails.key.pageNum}]]p </span> [[${pageDetails.key.pageTitle}]]
+                                <h4><span th:inline="text">[[${pageDetails.key.pageNum}]]p </span>
+                                    [[${pageDetails.key.pageTitle}]]
                                 </h4>
                                 <dl th:each="attachFiles :${pageDetails.value}">
-                                    <dt  th:text="${attachFiles.key}"></dt>
+                                    <dt th:text="${attachFiles.key}"></dt>
                                     <dd>
                                         <ol>
                                             <li th:each="attachedFile : ${attachFiles.value}" th:inline="text">
                                                 [[${attachedFile.subheading}]]
                                                 <audio preload="auto" controls>
-                                                    <source src="resources/audio/aekukka.mp3">
+                                                    <source th:src="@{/mediaAtt/{url}(url=${attachedFile.url})}"
                                                 </audio>
                                             </li>
                                         </ol>
                                     </dd>
                                 </dl>
                             </div>
-                            <!--//attachBox-->
-
-
                         </div>
-                        <!-- //.lect_cont -->
+                        <!--//attachBox-->
+
+                        <!-- attachBox-->
+                        <div class="attachBox videoAttach" th:if="${videoAttachList.size() > 0}"
+                             th:each="videoAttach : ${videoAttachList}">
+
+                            <p>비디오 첨부자료<span>(pdf 페이지에 있는 비디오파일입니다. 페이지를 확인하여 비디오파일을 재생해보세요.)</span></p>
+
+                            <div class="attach" th:each="pageDetails : ${videoAttach.value}">
+                                <h4><span th:inline="text">[[${pageDetails.key.pageNum}]]p </span>
+                                    [[${pageDetails.key.pageTitle}]]
+                                </h4>
+                                <dl th:each="attachFiles :${pageDetails.value}">
+                                    <dt th:text="${attachFiles.key}"></dt>
+                                    <dd>
+                                        <ol>
+                                            <li th:each="attachedFile : ${attachFiles.value}" th:inline="text"
+                                                th:classappend="${attachFiles.value.size() == 1} ? single : multi">
+                                                [[${attachedFile.subheading}]]
+                                                <video oncontextmenu="return false;" controls>
+                                                    <source th:src="@{/mediaAtt/{url}(url=${attachedFile.url})}"
+                                                            type="video/mp4">
+                                                </video>
+                                            </li>
+                                        </ol>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                        <!--//attachBox-->
                         <ul class="lect_btn">
                             <li><a th:href="${@environment.getProperty('maumAcademy.url')}">홈으로</a></li>
                         </ul>
+
+
+                        <!-- //.lect_cont -->
+
                     </div>
                     <!-- //.contents -->
                 </div>
@@ -361,5 +392,7 @@
                 })
                 ;
             </script>
+        </div>
+        </div>
     </body>
 </html>
