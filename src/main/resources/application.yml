@@ -1,7 +1,18 @@
 spring:
   profiles:
     active: "local"
-#        active: "dev"
+  #        active: "dev"
+  thymeleaf:
+    cache: false
+    check-template: true
+    check-template-location: true
+    content-type: text/html
+    enabled: true
+    encoding: UTF-8
+  resources:
+    static-locations: file:C:/Users/smpar/Desktop/mediaAtt/, classpath:/static
+
+
   mvc:
     async:
       request-timeout: -1
@@ -29,3 +40,4 @@ server:
       charset: UTF-8
       enabled: true
       force: true
+
