@@ -58,62 +58,19 @@ public class ContentServiceImpl implements ContentService {
         List<MediaAttach> audioAttachList = mediaAttachRepository.getAudioAttachByContentId(contentId);
         List<MediaAttach> videoAttachList = mediaAttachRepository.getVideoAttachByContentId(contentId);
 
-//
-//        Map<Integer, Map<Object, List<MediaAttach>>> groupedAudioAttach = audioAttachList.stream()
-//                .collect(groupingBy(MediaAttach::getContentId,
-//                        groupingBy(ma -> AttachFileVo.builder()
-//                                .pageTitle(ma.getPageTitle())
-//                                .pageNum(ma.getPageNum())
-//                                .url(ma.getUrl())
-//                                .heading(ma.getHeading())
-//                                .subheading(ma.getSubheading())
-//                                .build())
-//                        )
-//                );
-//        Map<Integer, Map<List<Object>, Map<AttachFileVo, List<MediaAttach>>>> groupedAudioAttach2 = audioAttachList.stream()
-//                .collect(groupingBy(MediaAttach::getContentId,
-//                        groupingBy(ma -> Arrays.asList(ma.getPageTitle(), ma.getPageNum(), ma.getHeading()),
-//                                groupingBy(ma -> AttachFileVo.builder()
-//                                        .url(ma.getUrl())
-//                                        .subheading(ma.getSubheading())
-//                                        .build())
-//                        ))
-//                );
-//
-//        Map<Integer, Map<Object, List<AttachFileVo>>> groupedAudioAttach = audioAttachList.stream()
-//                .collect(groupingBy(MediaAttach::getContentId,
-//                        groupingBy(ma -> Arrays.asList(ma.getPageTitle(), ma.getPageNum(), ma.getHeading()),
-//                                Collectors.mapping(ma -> AttachFileVo.builder()
-//                                        .url(ma.getUrl())
-//                                        .subheading(ma.getSubheading())
-//                                        .build(), Collectors.toList())
-//                        ))
-//                );
-//
-//        Map<Integer, Map<AttachPageVo, List<AttachFileVo>>> groupedAudioAttach3 = audioAttachList.stream()
-//                .collect(groupingBy(MediaAttach::getContentId,
-//                        groupingBy(ma -> AttachPageVo.builder()
-//                                        .pageTitle(ma.getPageTitle())
-//                                        .pageNum(ma.getPageNum())
-//                                        .build(),
-//                                Collectors.mapping(ma -> AttachFileVo.builder()
-//                                        .url(ma.getUrl())
-//                                        .subheading(ma.getSubheading())
-//                                        .build(), Collectors.toList())
-//                        )));
-//        Map<Integer, Map<AttachPageVo, List<AttachFileVo>>> groupedAudioAttach = audioAttachList.stream()
-//                .collect(groupingBy(MediaAttach::getContentId,
-//                        groupingBy(ma -> AttachPageVo.builder()
-//                                        .pageTitle(ma.getPageTitle())
-//                                        .pageNum(ma.getPageNum())
-//                                        .build(), LinkedHashMap::new,
-//                                Collectors.mapping(ma -> AttachFileVo.builder()
-//                                        .url(ma.getUrl())
-//                                        .subheading(ma.getSubheading())
-//                                        .build(), Collectors.toList())
-//                        )));
-
         Map<Integer, Map<AttachPageVo, Map<String, List<AttachFileVo>>>> groupedAudioAttach= audioAttachList.stream()
+                .collect(groupingBy(MediaAttach::getContentId,
+                        groupingBy(ma -> AttachPageVo.builder()
+                                        .pageTitle(ma.getPageTitle())
+                                        .pageNum(ma.getPageNum())
+                                        .build(), LinkedHashMap::new,
+                                groupingBy(ma -> ma.getHeading(), LinkedHashMap::new, Collectors.mapping(ma -> AttachFileVo.builder()
+                                        .url(ma.getUrl())
+                                        .subheading(ma.getSubheading())
+                                        .build(), Collectors.toList())
+                                ))));
+
+        Map<Integer, Map<AttachPageVo, Map<String, List<AttachFileVo>>>> groupedVideoAttach= videoAttachList.stream()
                 .collect(groupingBy(MediaAttach::getContentId,
                         groupingBy(ma -> AttachPageVo.builder()
                                         .pageTitle(ma.getPageTitle())
@@ -129,7 +86,7 @@ public class ContentServiceImpl implements ContentService {
         modelAndView.addObject("videoUrls", videoUrls);
         modelAndView.addObject("pdfUrls", pdfUrls);
         modelAndView.addObject("files", contentFiles);
-//        modelAndView.addObject("videoAttachList", groupedVideoAttach);
+        modelAndView.addObject("videoAttachList", groupedVideoAttach);
         modelAndView.addObject("audioAttachList", groupedAudioAttach);
     }
 }
