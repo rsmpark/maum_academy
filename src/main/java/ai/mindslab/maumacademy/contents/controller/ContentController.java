@@ -40,21 +40,9 @@ public class ContentController {
         modelAndView.addObject("relatedContents", filteredContent);
 
         List<ContentFile> contentFiles = contentService.getContentFilesByContentId(contentId);
+        contentService.mapContentFilesToModel(contentFiles,contentId, modelAndView);
 
-        List<String> videoUrls = new ArrayList<>();
-        List<String> pdfUrls = new ArrayList<>();
 
-        contentFiles.forEach(contentFile -> {
-            if(contentFile.getFileType().equals("pdf")){
-                pdfUrls.add(contentFile.getUrl());
-            } else{
-                videoUrls.add(contentFile.getUrl());
-            }
-        });
-
-        modelAndView.addObject("videoUrls", videoUrls);
-        modelAndView.addObject("pdfUrls", pdfUrls);
-        modelAndView.addObject("files", contentFiles);
 
         modelAndView.setViewName("content");
         return modelAndView;

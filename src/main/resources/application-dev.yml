@@ -1,22 +1,24 @@
 spring:
-  profiles:
-    active: dev
+  profiles: dev
+  resources:
+    static-locations: file:/home/ubuntu/mediaAtt/, classpath:/static
   mvc:
     async:
       request-timeout: -1
   application:
     name: maumAcademy
 
+
   datasource:
-    url: jdbc:mysql://localhost:3306/maumacademy
+    url: jdbc:mysql://canada-tts.c4jrgbteu2g3.ca-central-1.rds.amazonaws.com:3306/maumacademy
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: root
-    password: Park-sang1
+    username: minds
+    password: msl1234~
   jpa:
     hibernate:
       ddl-auto: update
     generate-ddl: true
-    show-sql: true
+    show-sql: false
     database: mysql
     properties:
       hibernate:
@@ -30,4 +32,4 @@ server:
       force: true
 
 maumAcademy:
-  url: http://localhost:8081
+  url: http://15.222.174.72:8002

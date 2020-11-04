@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ContentRepository extends JpaRepository<Content,Long> {
+public interface ContentRepository extends JpaRepository<Content,Integer> {
     @Query("select c from Content c where c.course.id = ?1")
     List<Content> getContentByCourseId (int courseId);
 

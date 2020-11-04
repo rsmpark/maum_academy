@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ContentFileRepository extends JpaRepository<ContentFile,Long> {
+public interface ContentFileRepository extends JpaRepository<ContentFile,Integer> {
     List<ContentFile> getAllByContentId(int contentId);
 }
