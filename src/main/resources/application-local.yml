@@ -1,5 +1,7 @@
 spring:
   profiles: local
+  resources:
+    static-locations: file:C:/Users/smpar/Desktop/mediaAtt/, classpath:/static
   mvc:
     async:
       request-timeout: -1
