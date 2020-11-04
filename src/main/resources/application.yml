@@ -9,10 +9,10 @@ spring:
     name: maumAcademy
 
   datasource:
-    url: jdbc:mysql://localhost:3306/maumacademy
+    url: jdbc:mysql://localhost:3307/maumacademy
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
-    password: Park-sang1
+    password: 365214
   jpa:
     hibernate:
       ddl-auto: update
@@ -29,3 +29,7 @@ server:
       charset: UTF-8
       enabled: true
       force: true
+
+hq:
+  tokenReqPath: /hq/oauth/token
+  logoutPath: /hq/oauth/deleteToken

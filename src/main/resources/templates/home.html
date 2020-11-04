@@ -67,7 +67,7 @@
                         <ul class="nav">
                             <li><a href="/home/pricingPage?lang=ko">가격정책</a></li>
                             <!-- 로그인X -->
-                            <li><a href="#none">로그인</a></li>
+                            <li><a href="#none" id="goToLogin">로그인하기</a></li>
                             <!-- 로그인O
                             <li><a class="btn_ico user" href="#none">사용자</a>
                                 <div class="lstBox">
@@ -571,6 +571,11 @@
                     });
                 });
             });
+
+            $('#goToLogin').click(function (e) {
+                e.preventDefault();// add this line
+                window.location.href="https://dev-sso.maum.ai/maum/loginMain?response_type=code&client_id=maumAcademy.local&redirect_uri=http://localhost:8080/auth/callback";
+            })
         </script>
     </body>
 </html>

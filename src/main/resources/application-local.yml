@@ -7,10 +7,10 @@ spring:
     name: maumAcademy
 
   datasource:
-    url: jdbc:mysql://localhost:3306/maumacademy
+    url: jdbc:mysql://localhost:3307/maumacademy
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
-    password: Park-sang1
+    password: 365214
   jpa:
     hibernate:
       ddl-auto: update
@@ -27,6 +27,16 @@ server:
       charset: UTF-8
       enabled: true
       force: true
+url:
+  maum-ai: https://dev-common.maum.ai
+  hq: https://dev-sso.maum.ai
+  maumAcademy: http://localhost:8080
+  mail-maum-ai: https://dev-common.maum.ai
+
+sso:
+  client-id: maumAcademy.local
+  scope: read_profile
+  callback: http://127.0.0.1:8080/auth/callback
 
 maumAcademy:
   url: http://localhost:8080
