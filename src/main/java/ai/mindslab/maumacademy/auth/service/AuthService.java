@@ -39,11 +39,13 @@ public class AuthService {
             auth_repository.insertAuth(token);
 
             //TODO: user가 null. user database를 maum.ai에서 data를 가져오는게 맞는것으로 생각.
-            UserVo userVo = user_repository.getUserByEmail(token.getEmail());
+            UserVo userVo = UserVo.builder().email(token.getEmail()).name(token.getEmail()).build();
+            // Token --> UserVo DB save
             return userVo;
         }
         else return null;
     }
+
 
     public String makeDeleteTokenUrl(UserVo user){
 
