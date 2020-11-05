@@ -31,5 +31,17 @@ server:
       enabled: true
       force: true
 
+
+url:
+  maum-ai: https://maum.ai
+  hq: https://sso.maum.ai
+  maumAcademy: https://maumacademy.maum.ai
+  mail-maum-ai: https://maum.ai
+
+sso:
+  client-id: maumAcademy
+  scope: read_profile
+  callback: https://maumacademy.maum.ai/auth/callback
+
 maumAcademy:
-  url: http://15.222.174.72:8002
+  url:  https://maumacademy.maum.ai
