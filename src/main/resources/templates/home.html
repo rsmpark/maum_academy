@@ -22,11 +22,13 @@
         <link rel="stylesheet" type="text/css"
               th:href="@{https://maum.ai/aiaas/kr/css/login_renew.css?ver=20201026050418535}">
         <link rel="stylesheet" type="text/css" th:href="@{css/maum_common.css}">
+<!--        <link rel="stylesheet" type="text/css" th:href="@{css/common_header.css}">-->
         <!-- General Script -->
         <script type="text/javascript" th:src="@{js/jquery-3.5.1.min.js}"></script>
         <script type="text/javascript" th:src="@{js/jquery-migrate-3.3.1.min.js}"></script>
         <script type="text/javascript" th:src="@{js/all-5.13.0.js}" data-auto-replace-svg="nest"></script>
         <script type="text/javascript" th:src="@{js/maum_common.js}"></script>
+<!--        <script type="text/javascript" th:src="@{js/common.js}"></script>-->
 
         <title>마음 아카데미</title>
     </head>
@@ -45,6 +47,10 @@
         </div>
         <!-- //.page loading -->
 
+        <form id="logout-form" action='/logout' method="POST" hidden>
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        </form>
+
         <!-- #wrap -->
         <div id="wrap" class="maumUI transform">
             <!-- #header -->
@@ -56,37 +62,41 @@
                     <div class="maum_gnb">
                         <ul class="nav">
                             <!--<li><a href="/home/krEmployeesMain" class="go_employees" id="Button_Internal" hidden="">직원용</a></li>-->
-                            <li><a href="#none" onclick="go(); return false;">서비스</a></li>
-                            <li><a href="/home/academyForm">마음 아카데미</a></li>
-                            <li><a href="javascript:openConsultantPop()">AI 컨설턴트 모집</a></li>
+                            <li><a href="https://maum.ai/?lang=ko#service_position"
+                                   onclick="go(); return false;">서비스</a></li>
+                            <li><a href="/">마음 아카데미</a></li>
+                            <li><a href="#btn_lyrConsult">AI 컨설턴트 모집</a></li>
                         </ul>
                     </div>
                     <!-- //.maum_gnb -->
                     <!-- .maum_etc -->
                     <div class="maum_etc">
                         <ul class="nav">
-                            <li><a href="/home/pricingPage?lang=ko">가격정책</a></li>
+                            <li><a href="https://maum.ai/home/pricingPage?lang=ko" onclick="window.open('https://maum.ai/home/pricingPage?lang=ko')">가격정책</a></li>
                             <!-- 로그인X -->
-                            <li><a href="#none" id="goToLogin">로그인하기</a></li>
-                            <!-- 로그인O
-                            <li><a class="btn_ico user" href="#none">사용자</a>
+                            <li><a href="#none" id="goToLogin" th:if="${session.user == null}">로그인하기</a></li>
+
+                            <!--로그인O-->
+                            <li><a class="btn_ico user" th:if="${session.user != null}" href="#none">사용자</a>
                                 <div class="lstBox">
                                     <ul class="lst">
                                         <li class="userInfo">
-                                            <span class="thumb"><img th:src="@{images/ico_user_g.svg}" alt="사용자"></span>
+                                            <span class="thumb"><img th:src="@{images/ico_user_g.svg}"
+                                                                     alt="사용자"></span>
                                             <span class="txt">
-                                                <em class="userName">홍길동</em>
-                                                <em class="loginID">asdf1234@mindslab.ai</em>
-                                            </span>
+                                         <em class="userName" th:text="${session.user?.name}">손미령</em>
+                                         <em class="loginID" th:text="${session.user?.email}">blissmimi@mindslab.ai</em>
+                                     </span>
                                         </li>
-                                        <li><a href="#none">프로필</a></li>
-                                        <li><a href="#none">이용내역</a></li>
-                                        <li><a href="#none">결제정보</a></li>
-                                        <li><a href="#none">로그아웃</a></li>
+                                        <li><a href="/user/profileMain" target="_self" title="프로필">프로필</a></li>
+                                        <li><a href="/user/apiAccountMain" target="_self" title="API 정보">API 정보</a></li>
+                                        <li><a href="/user/paymentInfoMain" target="_self" title="결제정보">결제정보</a></li>
+                                        <li><a href="#none" onclick="document.getElementById('logout-form').submit();"
+                                               title="로그아웃">로그아웃</a></li>
                                     </ul>
                                 </div>
                             </li>
-                            -->
+
                             <li><a class="btn_ico lang" href="#none">언어</a>
                                 <div class="lstBox">
                                     <ul class="lst">
@@ -334,7 +344,7 @@
                                 </li>
                             </ol>
                             <div class="btnBox">
-                                <a class="btn_lyr_open" href="#lyr_aiAonsultant_more">AI 컨설턴트 자세히 보기</a>
+                                <a id="btn_lyrConsult" class="btn_lyr_open" href="#lyr_aiAonsultant_more">AI 컨설턴트 자세히 보기</a>
                             </div>
                         </div>
                         <!-- //svc_disb -->
@@ -540,52 +550,53 @@
                     <button class="btn_lyr_close">닫기</button>
                 </div>
             </div>
-            <!-- //마음컨설턴트 자세히보기 -->
+        </div>
+        <!-- //마음컨설턴트 자세히보기 -->
 
-            <!-- -------------------- Local Resources -------------------- -->
-            <!-- Local CSS -->
-            <link rel="stylesheet" type="text/css" th:href="@{css/maumAcademy.css}">
-            <!-- Local Script Library -->
-            <script type="text/javascript" th:src="@{js/maumAcademy.js}"></script>
-            <!-- page Landing -->
-            <script type="text/javascript">
-                $(window).load(function () {
-                    //page loading delete
-                    $('#pageldg').addClass('pageldg_hide').delay(300).queue(function () {
-                        $(this).remove();
-                    });
+        <!-- -------------------- Local Resources -------------------- -->
+        <!-- Local CSS -->
+        <link rel="stylesheet" type="text/css" th:href="@{css/maumAcademy.css}">
+        <!-- Local Script Library -->
+        <script type="text/javascript" th:src="@{js/maumAcademy.js}"></script>
+        <!-- page Landing -->
+        <script type="text/javascript">
+            $(window).load(function () {
+                //page loading delete
+                $('#pageldg').addClass('pageldg_hide').delay(300).queue(function () {
+                    $(this).remove();
                 });
-            </script>
-            <!-- Local Script -->
-            <script type="text/javascript">
-                jQuery.event.add(window, "load", function () {
-                    $(document).ready(function () {
-                        //curriculum
-                        $('.bg_grayBox dl dd .lst_olBox a').on('click', function () {
-                            $('.bg_grayBox dl dd .lst_olBox a').removeClass('active');
-                            $(this).addClass('active');
+            });
+        </script>
+        <!-- Local Script -->
+        <script type="text/javascript">
+            jQuery.event.add(window, "load", function () {
+                $(document).ready(function () {
+                    //curriculum
+                    $('.bg_grayBox dl dd .lst_olBox a').on('click', function () {
+                        $('.bg_grayBox dl dd .lst_olBox a').removeClass('active');
+                        $(this).addClass('active');
 
-                            $('.courseBox .lst').removeClass('active');
-                            $('.courseBox .lst').eq($(this).parent().index()).addClass('active')
+                        $('.courseBox .lst').removeClass('active');
+                        $('.courseBox .lst').eq($(this).parent().index()).addClass('active')
 
 
-                            var courseHeight = $('.courseBox').offset().top;
+                        var courseHeight = $('.courseBox').offset().top;
 
-                            $('html').animate({
-                                scrollTop: courseHeight - 40,
-                            }, 500);
-                        });
+                        $('html').animate({
+                            scrollTop: courseHeight - 40,
+                        }, 500);
+                    });
 
-                        //course
-                        $('.courseBox .lst >li> a').on('click', function () {
-                            $(this).parent().siblings().removeClass('active')
-                            // $('.courseBox .lst >li').removeClass('active');
-                            $(this).parent().addClass('active');
+                    //course
+                    $('.courseBox .lst >li> a').on('click', function () {
+                        $(this).parent().siblings().removeClass('active')
+                        // $('.courseBox .lst >li').removeClass('active');
+                        $(this).parent().addClass('active');
 
-                            console.log("ASD")
+                        console.log("ASD")
 
-                            var ojtOffset = $(this).offset().top,
-                                winHeight = $(window).height() / 2;
+                        var ojtOffset = $(this).offset().top,
+                            winHeight = $(window).height() / 2;
 
                         $('html').animate({
                             scrollTop: ojtOffset - winHeight,
@@ -598,6 +609,109 @@
                 e.preventDefault();// add this line
                 window.location.href="https://dev-sso.maum.ai/maum/loginMain?response_type=code&client_id=maumAcademy.local&redirect_uri=http://localhost:8080/auth/callback";
             })
+
+
+
+            function validateEmail(sEmail) {
+                var filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+                if (filter.test(sEmail)) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+
+            $(document).ready(function() {
+                $('#sendMailToHello_landing').on('click', function () {
+
+                    if(validateEmail( $('#mail').val() ) == false){
+                        alert("이메일 형식을 확인해 주세요!");
+                    }else if ($('#name').val() === '' || $('#phone').val() === '' || $('#mail').val() === '' || $('#txt').val() === '' || $('#company').val() === '') {
+
+                        alert("내용을 모두 입력해야 이메일을 전달할 수 있어요!");
+
+                    } else {
+                        var noti;
+
+                        var param = location.search;
+                        var host = window.location.hostname;
+                        var pathname = window.location.pathname;
+
+                        if (pathname == "/home/pricingPage"){
+                            noti = "maum.ai Enterprise 가격 문의(KR)";
+                        }else if (pathname == "/home/krEcomindsMain"){
+                            noti = "maum.ai ecoMINDs(KR)";
+                        }else if (pathname == "/home/academyForm"){
+                            noti = "maum.ai 아카데미(KR)";
+                        }else {
+                            noti = "maum.ai Landing Page(KR)"
+                        }
+
+
+                        let title = "[maum.ai] "+$("#name").val() + "님의 문의 사항입니다.";
+                        let msg = "이름 : " + $("#name").val() + "<br>이메일 : " + $('#mail').val() + "<br>연락처 : " + $("#phone").val() + "<br>회사명 : " + $("#company").val() + "<br>문의 내용 : " + $("#txt").val()
+                            + "<br><br><br>* "+noti+" 에서 보낸 메일입니다.";
+
+                        let formData = new FormData();
+
+                        formData.append('fromaddr', $('#mail').val());
+                        formData.append('toaddr', 'hello@mindslab.ai');
+                        formData.append('subject', title);
+                        formData.append('message', msg);
+                        formData.append($("#key").val(), $("#value").val());
+
+                        $.ajax({
+                            type: 'POST',
+                            async: true,
+                            url: '/support/sendContactMail',
+                            dataType: 'text',
+                            data: formData,
+                            processData: false,
+                            contentType: false,
+                            success: function (obj) {
+                                $("#name").val('');
+                                $("#office").val('');
+                                $("#phone").val('');
+                                $("#company").val('');
+                                $("#txt").val('');
+                                $("#mail").val('');
+                                var placeholderLabel = $('.inquiry_box input, .inquiry_box textarea');
+                                placeholderLabel.siblings('label').show();
+
+                                $('#mail_success').fadeIn();
+
+                            },
+                            error: function (xhr, status, error) {
+                                console.log("error");
+                                alert("Contact Us 메일발송 요청 실패하였습니다.");
+                                window.location.href = "/";
+                            }
+                        });
+                    }
+                });
+
+                $('.btn_close').on('click', function () {
+                    $('#mail_success').fadeOut();
+                });
+                // 인풋 라벨
+                var placeholderLabel = $('.inquiry_box input, .inquiry_box textarea');
+
+                placeholderLabel.on('focus', function () {
+                    $(this).siblings('label').hide();
+                });
+
+                placeholderLabel.on('focusout', function () {
+                    if ($(this).val() === '') {
+                        $(this).siblings('label').show();
+                    }
+                });
+
+
+            });
+
+
         </script>
+
     </body>
 </html>

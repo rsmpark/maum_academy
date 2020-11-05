@@ -55,37 +55,41 @@
                     <div class="maum_gnb">
                         <ul class="nav">
                             <!--<li><a href="/home/krEmployeesMain" class="go_employees" id="Button_Internal" hidden="">직원용</a></li>-->
-                            <li><a href="#none" onclick="go(); return false;">서비스</a></li>
-                            <li><a href="/home/academyForm">마음 아카데미</a></li>
-                            <li><a href="javascript:openConsultantPop()">AI 컨설턴트 모집</a></li>
+                            <li><a href="https://maum.ai/?lang=ko#service_position"
+                                   onclick="go(); return false;">서비스</a></li>
+                            <li><a href="/">마음 아카데미</a></li>
+                            <li><a href="#btn_lyrConsult">AI 컨설턴트 모집</a></li>
                         </ul>
                     </div>
                     <!-- //.maum_gnb -->
                     <!-- .maum_etc -->
                     <div class="maum_etc">
                         <ul class="nav">
-                            <li><a href="/home/pricingPage?lang=ko">가격정책</a></li>
+                            <li><a href="https://maum.ai/home/pricingPage?lang=ko" onclick="window.open('https://maum.ai/home/pricingPage?lang=ko')">가격정책</a></li>
                             <!-- 로그인X -->
-                            <li><a href="#none">로그인</a></li>
-                            <!-- 로그인O
-                            <li><a class="btn_ico user" href="#none">사용자</a>
+                            <li><a href="#none" id="goToLogin" th:if="${session.user == null}">로그인하기</a></li>
+
+                            <!--로그인O-->
+                            <li><a class="btn_ico user" th:if="${session.user != null}" href="#none">사용자</a>
                                 <div class="lstBox">
                                     <ul class="lst">
                                         <li class="userInfo">
-                                            <span class="thumb"><img th:src="@{images/ico_user_g.svg}" alt="사용자"></span>
+                                            <span class="thumb"><img th:src="@{images/ico_user_g.svg}"
+                                                                     alt="사용자"></span>
                                             <span class="txt">
-                                                <em class="userName">홍길동</em>
-                                                <em class="loginID">asdf1234@mindslab.ai</em>
-                                            </span>
+                                         <em class="userName" th:text="${session.user.name}">손미령</em>
+                                         <em class="loginID" th:text="${session.user.email}">blissmimi@mindslab.ai</em>
+                                     </span>
                                         </li>
-                                        <li><a href="#none">프로필</a></li>
-                                        <li><a href="#none">이용내역</a></li>
-                                        <li><a href="#none">결제정보</a></li>
-                                        <li><a href="#none">로그아웃</a></li>
+                                        <li><a href="/user/profileMain" target="_self" title="프로필">프로필</a></li>
+                                        <li><a href="/user/apiAccountMain" target="_self" title="API 정보">API 정보</a></li>
+                                        <li><a href="/user/paymentInfoMain" target="_self" title="결제정보">결제정보</a></li>
+                                        <li><a href="#none" onclick="document.getElementById('logout-form').submit();"
+                                               title="로그아웃">로그아웃</a></li>
                                     </ul>
                                 </div>
                             </li>
-                            -->
+
                             <li><a class="btn_ico lang" href="#none">언어</a>
                                 <div class="lstBox">
                                     <ul class="lst">
