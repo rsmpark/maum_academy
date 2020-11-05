@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 public interface AuthRepository extends JpaRepository<Auth,Long> {
 
     @Query("Select a from Auth a where a.email=?1")
-    TokenVo getAuth(String email);
+    Auth getAuth(String email);
 
     @Transactional
     @Modifying
