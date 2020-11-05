@@ -34,11 +34,6 @@ public class Auth {
     @Column(name ="refresh_expire_time", columnDefinition = "varchar(200)")
     private String refresh_expire_time;
 
-//    @Column(name ="create_time", columnDefinition = "varchar(200)")
-//    private String create_time;
-//
-//    @Column(name ="update_time", columnDefinition = "varchar(200)")
-//    private String update_time;
 
 
     @Override
@@ -50,8 +45,6 @@ public class Auth {
                 ", access_expire_time=" + access_expire_time + '\'' +
                 ", refresh_token='" + refresh_token + '\'' +
                 ", refresh_expire_time='" + refresh_expire_time + '\'' +
-//                ", create_time='" + create_time + '\'' +
-//                ", update_time='" + update_time + '\'' +
                 '}';
     }
 }

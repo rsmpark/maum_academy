@@ -74,7 +74,7 @@ public class AuthController {
         UserVo user = service.getAuthToken(code, state, OAUTH_CALLBACK_URI);
         if(user != null) {
             request.getSession().setAttribute("user", user);
-//            userRepository.insertUser(user);
+            userRepository.insertUser(user);
         }
         else {
             request.getSession().removeAttribute("user");
