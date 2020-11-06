@@ -44,8 +44,12 @@
         </div>
         <!-- //.page loading -->
 
+        <form id="logout-form" action='/logout' method="POST" hidden>
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        </form>
+
         <!-- #wrap -->
-        <div id="wrap" class="maumUI">
+        <div id="wrap" class="maumUI transform">
             <!-- #header -->
             <div id="header">
                 <!-- .maum_sta -->
@@ -65,9 +69,10 @@
                     <!-- .maum_etc -->
                     <div class="maum_etc">
                         <ul class="nav">
-                            <li><a href="https://maum.ai/home/pricingPage?lang=ko" onclick="window.open('https://maum.ai/home/pricingPage?lang=ko')">가격정책</a></li>
+                            <li><a href="https://maum.ai/home/pricingPage?lang=ko"
+                                   onclick="window.open('https://maum.ai/home/pricingPage?lang=ko')">가격정책</a></li>
                             <!-- 로그인X -->
-                            <li><a href="#none" id="goToLogin" th:if="${session.user == null}">로그인하기</a></li>
+                            <li><a href="#none" id="goToLogin" th:if="${session.user == null}">로그인</a></li>
 
                             <!--로그인O-->
                             <li><a class="btn_ico user" th:if="${session.user != null}" href="#none">사용자</a>
@@ -77,8 +82,8 @@
                                             <span class="thumb"><img th:src="@{images/ico_user_g.svg}"
                                                                      alt="사용자"></span>
                                             <span class="txt">
-                                         <em class="userName" th:text="${session.user.name}">손미령</em>
-                                         <em class="loginID" th:text="${session.user.email}">blissmimi@mindslab.ai</em>
+                                         <em class="userName" th:text="${session.user?.name}">손미령</em>
+                                         <em class="loginID" th:text="${session.user?.email}">blissmimi@mindslab.ai</em>
                                      </span>
                                         </li>
                                         <li><a href="/user/profileMain" target="_self" title="프로필">프로필</a></li>
@@ -109,7 +114,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="/main/krMainHome" target="_blank">
+                                            <a href="https://maum.ai/main/krMainHome" target="_blank">
                                                 <span class="ico"></span>
                                                 <em>Cloud API</em>
                                             </a>
@@ -144,18 +149,36 @@
                         <span class="line_btm"></span>
                     </a>
                 </div>
-                <!-- //.maum_sta -->
-                <!-- .lnb -->
-                <div class="lnb">
-                    <h2>마음 아카데미</h2>
-                    <ul class="nav">
-                        <li><a id="btn_contact" class="btn_rou_pstive btn_lyr_open" href="#lyr_contact_us">마음 아카데미
-                            문의하기</a></li>
-                    </ul>
+                <!-- .svc_sta -->
+                <div class="svc_sta">
+                    <!-- svc_visual -->
+                    <div class="svc_visual">
+                        <dl>
+                            <dt>maum Academy</dt>
+                            <dd>AI 종합 교육 플랫폼</dd>
+                        </dl>
+                        <p class="bg_img"><img src="resources/images/img_visual01.jpg" alt="마음아카데미 이미지"></p>
+                    </div>
+                    <!-- //svc_visual -->
+                    <!-- .lnb -->
+                    <div class="lnb">
+                        <h2>마음 아카데미</h2>
+                        <!-- [D] 로컬메뉴
+                                        <ul class="nav">
+                                            <li><a class="active" href="#none">로컬메뉴 1</a></li>
+                                            <li><a href="#none">로컬메뉴2</a></li>
+                                            <li><a href="#none">로컬메뉴3</a></li>
+                                        </ul>
+                         -->
+                        <ul class="nav_etc">
+                            <li><a id="btn_contact" class="btn_rou_pstive btn_lyr_open" href="#lyr_contact_us">아카데미
+                                문의하기</a></li>
+                        </ul>
+                    </div>
+                    <!-- //.maum_sta -->
                 </div>
-                <!-- //.lnb -->
+                <!-- //#header -->
             </div>
-            <!-- //#header -->
             <hr>
             <!-- #container -->
             <div id="container">
@@ -337,6 +360,7 @@
             <script type="text/javascript" th:src="@{js/pdfobject.js}"></script>
             <script type="text/javascript" th:src="@{js/player.js}"></script>
             <script type="text/javascript" th:src="@{js/maumAcademy.js}"></script>
+
             <!-- page Landing -->
             <script type="text/javascript">
                 $(window).load(function () {
@@ -344,12 +368,22 @@
                     $('#pageldg').addClass('pageldg_hide').delay(300).queue(function () {
                         $(this).remove();
                     });
-                });
+                })
+
+                $('#goToLogin').click(function (e) {
+                    e.preventDefault();// add this line
+                    window.location.href = "https://sso.maum.ai/maum/loginMain?response_type=code&client_id=maumAcademy&redirect_uri=https://maumacademy.maum.ai/auth/callback";
+                })
             </script>
             <!-- Local Script -->
             <script type="text/javascript" th:inline="javascript">
                 jQuery.event.add(window, "load", function () {
                     $(document).ready(function () {
+                        //header 변형
+                        $('#wrap').addClass('transform');
+                        $('#wrap').addClass('trans');
+                        $('#container').addClass('view');
+
                         $('.lect_cont .pdfBox').show();
                         $('.lect_cont .videoBox').hide();
 

@@ -18,7 +18,7 @@ public interface AuthRepository extends JpaRepository<Auth,Long> {
 
     @Transactional
     @Modifying
-    @Query(value = "INSERT into Auth(email, access_token, access_expire_time, refresh_token, refresh_expire_time) VALUES (:#{#paramToken.email}, :#{#paramToken.access_token}," +
+    @Query(value = "INSERT into auth(email, access_token, access_expire_time, refresh_token, refresh_expire_time) VALUES (:#{#paramToken.email}, :#{#paramToken.access_token}," +
             ":#{#paramToken.access_expire_time},:#{#paramToken.refresh_token}," +
             ":#{#paramToken.refresh_expire_time}) ", nativeQuery = true)
     int insertAuth (@Param("paramToken")TokenVo token);

@@ -16,7 +16,7 @@ $(document).ready(function (){
 	});
 
     //Layer popup open 
-	$('.btn_lyr_open').on('click',function(){	
+	$('.btn_lyr_open').on('click',function(){
         var winHeight = $(window).height()*0.7,
             hrefId = $(this).attr('href');
         
@@ -28,13 +28,13 @@ $(document).ready(function (){
         $('.lyrBox .lyr_mid').each(function(){
             $(this).css('max-height', Math.floor(winHeight) +'px'); 
         }); 
-        
+
         //Layer popup close 
         $('.btn_lyr_close, .lyr_bg').on('click',function(){
-            $('body').css('overflow','');  
+            $('body').css('overflow','');
             $('body').find(hrefId).unwrap();
-            $('.lyr_bg').remove(); 
-        });	
+            $('.lyr_bg').remove();
+        });
     });	
 	
     //문의하기(전화번호 하이픈)

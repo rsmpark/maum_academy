@@ -1,9 +1,6 @@
 // MINDsLab UX/UI팀. YMJ. 20200910
 
 $(document).ready(function (){
-	//header 변형
-	$('#wrap').addClass('transform');
-	
 	//문의하기(인풋 라벨)
 	var contactLabel = $('#lyr_contact_us input,#lyr_contact_us textarea');
 	

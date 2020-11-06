@@ -1,7 +1,15 @@
 // JavaScript Document
 
 //scroll event
-var wrapOffset = $('#wrap').offset();    
+var wrapOffset = $('#wrap').offset();
+
+console.log($(window).scrollTop())
+console.log(wrapOffset.top)
+
+if($(window).scrollTop() == 0){
+    $('#wrap').removeClass('transform');
+}
+
 
 //scroll(위치확인)
 if ($(window).scrollTop() > wrapOffset.top) {
@@ -12,6 +20,8 @@ if ($(window).scrollTop() > 260) {
 }
 //scroll(maum_sta변형)
 $(window).scroll(function () {
+    console.log($(window).scrollTop())
+    console.log(wrapOffset.top)
     if ($(window).scrollTop() > wrapOffset.top) {
         $('#wrap').addClass('transform');
     } else {
@@ -20,6 +30,8 @@ $(window).scroll(function () {
 });
 //scroll(maum_sta변형)
 $(window).scroll(function () {
+    console.log($(window).scrollTop())
+    console.log(wrapOffset.top)
     if ($(window).scrollTop() > 260) {
         $('#wrap').addClass('trans');
     } else {

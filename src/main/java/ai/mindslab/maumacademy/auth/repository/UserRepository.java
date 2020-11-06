@@ -17,6 +17,6 @@ public interface UserRepository extends JpaRepository<User,Long> {
 
     @Transactional
     @Modifying
-    @Query(value = "INSERT INTO User(email, name, phone) VALUES (:#{#paramToken.email},:#{#paramToken.name},:#{#paramToken.phone})", nativeQuery = true)
+    @Query(value = "INSERT INTO user(email, name, phone) VALUES (:#{#paramToken.email},:#{#paramToken.name},:#{#paramToken.phone})", nativeQuery = true)
     int insertUser(@Param("paramToken")UserVo user);
 }

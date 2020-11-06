@@ -19,8 +19,8 @@
 .maumUI .svc_sta .lnb ul.nav li {display:inline-block; margin:0;}
 .maumUI .svc_sta .lnb ul.nav li a {display:block; position:relative; width:200px; height:100%; padding:0; color:rgba(255,255,255,0.7); font-size:16px; font-weight:400; text-align:center; line-height:55px; border-radius:0; transition:all 0.3s ease-out;}
 .maumUI .svc_sta .lnb ul.nav li a:hover {color:rgba(255,255,255,1.0); background:rgba(255,255,255,0.15); transition:all 0.3s ease-out;}
-.maumUI .svc_sta .lnb ul.nav li a.active {color:#3599ff; font-weight:700; background:rgba(255,255,255,0.15); }
-.maumUI .svc_sta .lnb ul.nav li a.active:before {content:''; position:absolute; bottom:0; left:0; width:100%; height:3px; background:#3599ff;}
+.maumUI .svc_sta .lnb ul.nav li a.active {color:#fff; background:rgba(255,255,255,0.15); }
+.maumUI .svc_sta .lnb ul.nav li a.active:before {content:''; position:absolute; top:0; left:0; width:100%; height:3px; background:#fff;}
 
 .maumUI .svc_sta .lnb ul.nav_etc {display:inline-block; margin:0;}
 .maumUI .svc_sta .lnb ul.nav_etc li {display:inline-block; margin:0;}
@@ -175,7 +175,6 @@
 .attachBox .attach dl dd {display:block; clear:both; overflow:hidden;}
 .attachBox .attach dl dd ol {display:block; color:#77889a;}
 .attachBox .attach dl dd ol li {float:left; width:50%; margin:0 0 10px 0; padding:0 30px; box-sizing:border-box;}
-.attachBox .attach dl dd ol li.single {float:none; margin: 0 auto 10px;}
 .attachBox .attach dl dd ol li .playerBox {margin:5px 0 0 0;}
 .attachBox .attach dl dd ol li video { display: block; width:100%; margin:5px 0 0 0; border-radius:5px; box-sizing:border-box;}
 
