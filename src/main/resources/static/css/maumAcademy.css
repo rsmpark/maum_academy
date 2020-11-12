@@ -24,10 +24,9 @@
 .maumUI .svc_sta .lnb ul.nav li a.active:before {content:''; position:absolute; top:0; left:0; width:100%; height:3px; background:#fff;}
 
 .maumUI .svc_sta .lnb ul.nav_etc {display:inline-block; margin:0;}
-.maumUI .svc_sta .lnb ul.nav_etc li {display:inline-block; margin:0;}
-.maumUI .svc_sta .lnb ul.nav_etc li a {display:block; position:relative; height:100%; color:rgba(255,255,255,0.7); font-size:16px; font-weight:400; border-radius:0; background:rgba(255,255,255,0); transition:all 0.3s ease-out;}
-.maumUI .svc_sta .lnb ul.nav_etc li a:hover {color:rgba(255,255,255,0.7); background:rgba(255,255,255,0.15); transition:all 0.3s ease-out;}
-.maumUI .svc_sta .lnb ul.nav_etc li a.btn_rou_pstive {padding:0 15px; line-height:55px; transition:all 0.3s ease-out;}
+.maumUI .svc_sta .lnb ul.nav_etc li {display:inline-block; margin:0 10px;}
+.maumUI .svc_sta .lnb ul.nav_etc li a {display:block; position:relative; height:100%; padding:0 15px; color:rgba(255,255,255,0.7); font-size:16px; font-weight:400; line-height:55px; letter-spacing:-0.25px; border-radius:0; background:rgba(255,255,255,0); transition:all 0.3s ease-out;}
+.maumUI .svc_sta .lnb ul.nav_etc li a:hover {color:rgba(255,255,255,1.0); background:rgba(255,255,255,0.15); transition:all 0.3s ease-out;}
 
 /* header-scroll transform */
 .maumUI.transform #header .maum_sta {position:fixed; top:0; left:0; width:100%; height:40px; background:rgba(17,29,39,1.0); transition:all 0.3s ease-out; z-index:50;}
@@ -57,7 +56,11 @@
 .maumUI.transform.trans #header .svc_sta .lnb a:hover {color:#121f3e;}
 .maumUI.transform.trans #header .svc_sta .lnb a.active {color:#3599ff;}
 .maumUI.transform.trans #header .svc_sta .lnb ul.nav_etc {float:right; margin:10px 0 0 0;}
-.maumUI.transform.trans #header .svc_sta .lnb ul.nav_etc a {height:36px; margin:0 0 0 20px; padding:0 15px; color:#fff; font-size:13px; line-height:34px; border-radius:4px; background:#3599ff;}
+.maumUI.transform.trans #header .svc_sta .lnb ul.nav_etc a {height:36px; margin:0 0 0 15px; color:#121f3e; padding:0 15px;font-size:13px; line-height:34px; border:1px solid rgba(0,0,0,0.1); border-radius:4px;}
+.maumUI.transform.trans #header .svc_sta .lnb ul.nav_etc a:hover {color:#3599ff; border:1px solid #3599ff;}
+.maumUI.transform.trans #header .svc_sta .lnb ul.nav_etc a.btn_rou_pstive {color:#fff; background:#3599ff;}
+.maumUI.transform.trans #header .svc_sta .lnb ul.nav_etc a.btn_rou_pstive:hover {border:1px solid rgba(0,0,0,0.2);}
+.maumUI.transform.trans #header .svc_sta .lnb ul.nav_etc li {margin:0;}
 
 /* container */
 .maumUI #container {display:table; width:100%; height:100%; padding:0; background:#f5f7f9;}
@@ -83,7 +86,7 @@
 .maumUI #container .contents {display:table-cell; width:calc(100% - 280px); padding:30px; text-align:center; vertical-align:top; box-sizing:border-box;}
 
 /* main-서비스설명 */
-.svc_disb {display:block; position:relative; width:100%; padding:70px 0; text-align:center; background:#fff;}
+.svc_disb {display:block; position:relative; width:100%; padding:60px 0; text-align:center; background:#fff;}
 .svc_disb dl {display:block; position:relative; color:#121f3e;}
 .svc_disb dl dt {display:block; margin:0 0 30px 0; font-size:30px; font-weight:600; line-height:40px; letter-spacing:-1px;}
 .svc_disb dl dd {display:block; color:#5b6875; font-size:17px; line-height:28px;}
@@ -123,6 +126,7 @@
 .courseBox {display:inline-block; position:relative; width:1180px; padding:45px 70px; border-radius:15px; box-sizing:border-box; background:#fff;}
 .courseBox h4 {display:block; margin:0 0 20px 0; color:#121f3e; font-size:28px; font-weight:500; text-align:left; line-height:38px;}
 .courseBox h4 span {display:inline-block; margin:0 0 0 10px; color:#98a7b7; font-size:13px;}
+/*.courseBox .lst {display:block;}*/
 .courseBox .lst.active {display: block}
 .courseBox .lst {display: none}
 .courseBox .lst >li {display:block; overflow:hidden; margin:0 0 15px 0; border:1px solid #e1e5ea; border-radius:5px;}
@@ -234,6 +238,7 @@
 
 /* color */
 .ft_point01 {color:#3599ff;}
+
 
 /* layerpopup */
 #lyr_aiAonsultant_more {width:800px;}
