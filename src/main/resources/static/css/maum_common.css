@@ -316,7 +316,7 @@
 /* 위 아래 버튼 (버튼 없애기를 함) */
 
 /* alert */
-.altBox {
+#alt_loginMessage, #alt_serviceMessage{
     display: none;
     position: fixed;
     top: 1%;

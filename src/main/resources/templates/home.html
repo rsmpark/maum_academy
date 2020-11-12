@@ -64,7 +64,18 @@
             <!-- [D] 확인 클릭 시, 통합로그인으로 이동, 인증 완료 되면 콘텐츠 페이지로 이동 -->
         </div>
     </div>
-
+    <!-- 알림_서비스이용불가 -->
+    <div id="alt_serviceMessage" class="altBox">
+        <div class="msgBox">
+            <dl>
+                <dt>준비중인 서비스입니다.</dt>
+            </dl>
+        </div>
+        <div class="btnBox sz_small">
+            <a href="#"
+               class="btn_clr service">확인</a>
+        </div>
+    </div>
     <!-- #wrap -->
     <div id="wrap" class="maumUI">
         <!-- #header -->
@@ -118,7 +129,7 @@
                             <div class="lstBox">
                                 <ul class="lst">
                                     <li><a href="#none">한국어</a></li>
-                                    <li><a href="#none">English</a></li>
+                                    <li><a href="#none" id="englishServiceBtn">English</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -699,13 +710,23 @@
                 });
 
                 $('.courseBox ul li ul li.unauth a').on('click', function (e) {
-                    $('.altBox').css('display', 'block');
+                    $('#alt_loginMessage').css('display', 'block');
 
 
                     $('#alt_loginMessage .btnBox.sz_small .btn_cancel').on('click', function () {
-                        $('.altBox').css('display', 'none');
+                        $('#alt_loginMessage').css('display', 'none');
                     })
 
+                    e.preventDefault()
+                })
+
+                $('#englishServiceBtn').on('click', function (e) {
+                    $('#alt_serviceMessage').css('display', 'block');
+
+
+                    $('#alt_serviceMessage .btnBox.sz_small').on('click', function () {
+                        $('#alt_serviceMessage').css('display', 'none');
+                    })
                     e.preventDefault()
                 })
 
