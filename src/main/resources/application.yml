@@ -35,6 +35,10 @@ spring:
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
 
 server:
+  error:
+    path: /error
+    whitelabel:
+      enabled: false
   servlet:
     encoding:
       charset: UTF-8

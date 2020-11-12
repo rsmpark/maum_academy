@@ -297,7 +297,6 @@
 .btnBox {
     display: block;
     clear: both;
-    overflow: hidden;
 }
 
 .btnBox button {
@@ -315,7 +314,7 @@
 }
 
 .btnBox button:hover {
-    box-shadow: 0 2px 4px rgba(11, 42, 74, 0.3);
+    box-shadow: 0 2px 4px rgba(11, 42, 74, 0.2);
     transition: all 0.3s ease-out;
 }
 
@@ -358,7 +357,7 @@
 }
 
 .btnBox a:hover {
-    box-shadow: 0 2px 4px rgba(11, 42, 74, 0.3);
+    box-shadow: 0 2px 4px rgba(11, 42, 74, 0.2);
     transition: all 0.3s ease-out;
 }
 
@@ -913,7 +912,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 9999;
+    z-index: 8000;
 }
 
 .lyrWrap .lyr_bg {
@@ -1243,7 +1242,7 @@
 }
 
 .lyrWrap .lyrBox .lyr_btm .btnBox.sz_small button:first-child {
-    background: #718292;
+    background: #616e7b;
 }
 
 .lyrWrap .lyrBox .lyr_mid .dlBox dl.dl_tbl dd.bg_g {
@@ -1540,6 +1539,108 @@
     }
 }
 
+/*Scroll Bar Style*/
+::-webkit-scrollbar {
+    width: 5px;
+    border-radius: 3px;
+    height: 6px;
+}
+
+/* 스크롤바의 width */
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+/* 스크롤바의 전체 배경색 */
+::-webkit-scrollbar-thumb {
+    background-color: rgba(25, 42, 57, 0.3);
+    border-radius: 3px;
+}
+
+/* 스크롤바 색 */
+::-webkit-scrollbar-button {
+    display: none;
+}
+
+/* 위 아래 버튼 (버튼 없애기를 함) */
+
+/* alert */
+.altBox {
+    display: none;
+    position: fixed;
+    top: 1%;
+    left: 50%;
+    min-width: 400px;
+    padding: 15px 20px;
+    border-radius: 4px;
+    background: #fff;
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.3);
+    transform: translate(-50%, 0);
+    z-index: 2000;
+}
+
+.altBox dl {
+    display: block;
+    padding: 0 0 12px 0;
+}
+
+.altBox dl dt {
+    display: block;
+    padding: 0 0 10px 0;
+    color: #727782;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.altBox dl dd {
+    display: block;
+    color: #000;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.altBox .btnBox {
+    text-align: right;
+}
+
+.altBox .btnBox button {
+    min-width: 50px;
+    padding: 5px 15px;
+    color: #121f3e;
+    font-size: 13px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: #fff;
+}
+
+.altBox .btnBox button:hover {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.altBox .btnBox button.btn_clr {
+    color: #fff;
+    background: #3599ff;
+}
+
+.altBox .btnBox a {
+    min-width: 50px;
+    padding: 0 15px;
+    color: #121f3e;
+    font-size: 13px;
+    vertical-align: top;
+    line-height: 29px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: #fff;
+}
+
+.altBox .btnBox a.btn_clr {
+    color: #fff;
+    background: #3599ff;
+}
+
+.altBox .btnBox a:hover {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
 /* -------------------- wrap -------------------- */
 .maumUI {
     display: block;
@@ -1574,9 +1675,16 @@
     text-indent: -999px;
 }
 
+.maumUI #header h1 a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
 /* header-maum_sta */
 .maumUI #header .maum_sta {
     display: block;
+    min-width: 1280px;
     height: 70px;
     transition: all 0.2s ease-out;
 }
@@ -2036,6 +2144,10 @@
     width: 24px;
     transform: rotate(-45deg);
     transform-origin: 15% 95%;
+}
+
+.maumUI #container {
+    min-width: 1280px;
 }
 
 /* 시스템 메세지 */

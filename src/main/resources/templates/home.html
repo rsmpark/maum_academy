@@ -45,9 +45,24 @@
     <!-- //.page loading -->
 
     <form id="logout-form" action='/logout' method="POST" hidden>
-        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        <!--        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
     </form>
 
+    <!-- 알림_로그인 -->
+    <div id="alt_loginMessage" class="altBox">
+        <div class="msgBox">
+            <dl>
+                <dt>로그인이 필요한 서비스 입니다.</dt>
+                <dd>로그인 하시겠습니까?</dd>
+            </dl>
+        </div>
+        <div class="btnBox sz_small">
+            <button class="btn_cancel">취소</button>
+            <a href="#"
+               class="btn_clr login">확인</a>
+            <!-- [D] 확인 클릭 시, 통합로그인으로 이동, 인증 완료 되면 콘텐츠 페이지로 이동 -->
+        </div>
+    </div>
 
     <!-- #wrap -->
     <div id="wrap" class="maumUI">
@@ -55,7 +70,7 @@
         <div id="header">
             <!-- .maum_sta -->
             <div class="maum_sta">
-                <h1><a href="#none">maum.ai</a></h1>
+                <h1><a href="https://maum.ai">maum.ai</a></h1>
                 <!-- .maum_gnb -->
                 <div class="maum_gnb">
                     <ul class="nav">
@@ -87,9 +102,12 @@
                                          <em class="loginID" th:text="${session.user?.email}">blissmimi@mindslab.ai</em>
                                      </span>
                                     </li>
-                                    <li><a href="/user/profileMain" target="_self" title="프로필">프로필</a></li>
-                                    <li><a href="/user/apiAccountMain" target="_self" title="API 정보">API 정보</a></li>
-                                    <li><a href="/user/paymentInfoMain" target="_self" title="결제정보">결제정보</a></li>
+                                    <li><a href="https://maum.ai/user/profileMain" target="_self" title="프로필">프로필</a>
+                                    </li>
+                                    <li><a href="https://maum.ai/user/apiAccountMain" target="_self" title="API 정보">API
+                                        정보</a></li>
+                                    <li><a href="https://maum.ai/user/paymentInfoMain" target="_self"
+                                           title="결제정보">결제정보</a></li>
                                     <li><a href="#none" onclick="document.getElementById('logout-form').submit();"
                                            title="로그아웃">로그아웃</a></li>
                                 </ul>
@@ -164,7 +182,7 @@
                 <!-- //svc_visual -->
                 <!-- .lnb -->
                 <div class="lnb">
-                    <h2>마음 아카데미</h2>
+                    <h2><a href="https://maumacademy.maum.ai/">마음 아카데미</a></h2>
                     <!--                    <ul class="nav">-->
                     <!--                        <li><a id="btn_contact" class="btn_rou_pstive btn_lyr_open" href="#lyr_contact_us">마음 아카데미-->
                     <!--                            문의하기</a></li>-->
@@ -316,11 +334,66 @@
                 </div>
                 <!-- //bg_grayBox -->
                 <!-- svc_disb -->
+                <!-- svc_disb -->
+                <div class="svc_disb">
+                    <dl>
+                        <dt>마음 AI 컨설턴트란?</dt>
+                        <dd>maum.ai를 통해 더 많은 사람들이 가치 혁신과 비즈니스 혁신을 이룩할 수 있도록<br><span class="ft_point01">인공지능 전문 지식과 비즈니스 인사이트</span>를
+                            발휘하는 융합형 인공지능 전문가입니다.
+                        </dd>
+                    </dl>
+                </div>
+                <!-- //lot_half -->
+                <!-- bg_grayBox -->
+                <div class="bg_grayBox">
+                    <!-- lot_half -->
+                    <div class="lot_half">
+                        <dl class="landscapeBox">
+                            <dt>마음 AI 컨설턴트에게 필요한 역량</dt>
+                            <dd>
+                                <ul class="lst">
+                                    <li><img th:src="@{images/ico_aiCstt_s01.svg}" alt="썸네일 이미지">인공지능, 머신러닝, 딥러닝에 대한 기초
+                                        지식
+                                    </li>
+                                    <li><img th:src="@{images/ico_aiCstt_s02.svg}" alt="썸네일 이미지">새로운 기술에 대한 지적 호기심과 빠른
+                                        습득력
+                                    </li>
+                                    <li><img th:src="@{images/ico_aiCstt_s03.svg}" alt="썸네일 이미지">논리적인 사고를 바탕으로 한 커뮤니케이션
+                                        능력
+                                    </li>
+                                    <li><img th:src="@{/images/ico_aiCstt_s04.svg}" alt="썸네일 이미지">고객의 비즈니스 혁신을 고민하는 문제
+                                        해결 능력
+                                    </li>
+                                </ul>
+                            </dd>
+                        </dl>
+                        <dl class="landscapeBox">
+                            <dt>마음 AI 컨설턴트만의 혜택</dt>
+                            <dd>
+                                <ul class="lst">
+                                    <li><img th:src="@{images/ico_aiCstt_b01.svg}" alt="썸네일 이미지">MINDsLab 공식 Certificate
+                                        발급
+                                    </li>
+                                    <li><img th:src="@{images/ico_aiCstt_b02.svg}" alt="썸네일 이미지">maum.ai 서비스 (Cloud API,
+                                        maum 회의록 등) 무료 이용
+                                    </li>
+                                    <li><img th:src="@{images/ico_aiCstt_b03.svg}" alt="썸네일 이미지">온/오프라인 교육 지원</li>
+                                    <li><img th:src="@{images/ico_aiCstt_b04.svg}" alt="썸네일 이미지">MINDsLab 및 ecoMINDs 행사
+                                        우선 참여
+                                    </li>
+                                </ul>
+                            </dd>
+                        </dl>
+                    </div>
+                    <!-- //lot_half -->
+                </div>
+                <!-- //bg_grayBox -->
+                <!-- svc_disb -->
                 <div class="svc_disb">
                     <dl>
                         <dt>AI 컨설턴트가 되고 싶다면?</dt>
-                        <dd>마음 아카데미는 예비 AI 컨설턴트들이 체계적인 훈련을 받을 수 있는 <span class="ft_point01">AI 컨설턴트 커리큘럼</span>을
-                            제공하고 있습니다.<br>지금 바로 마음 아카데미에서 AI 컨설턴트에 도전하세요!
+                        <dd>마음 아카데미는 예비 AI 컨설턴트들이 체계적인 훈련을 받을 수 있는 <span class="ft_point01">AI 컨설턴트 커리큘럼</span>을 제공하고
+                            있습니다.<br>지금 바로 마음 아카데미에서 AI 컨설턴트에 도전하세요!
                         </dd>
                     </dl>
                     <ol class="lst">
@@ -330,8 +403,7 @@
                             <span class="txt">마음 AI 컨설턴트에 대해 <br>자세히 알아본 후 지원하기!</span>
                         </li>
                         <li>
-                                <span class="ico"><img th:src="@{images/ico_train02.svg}"
-                                                       alt="Study & Learn"></span>
+                            <span class="ico"><img th:src="@{images/ico_train02.svg}" alt="Study & Learn"></span>
                             <span class="tit">02. Study &amp; Learn</span>
                             <span class="txt">마음 아카데미에서 컨설턴트 교육을 <br>수강하고, 실력을 키우기!</span>
                         </li>
@@ -347,10 +419,11 @@
                         </li>
                     </ol>
                     <div class="btnBox">
-                        <a id="btn_lyrConsult" class="btn_lyr_open" href="#lyr_aiAonsultant_more">AI 컨설턴트 자세히
-                            보기</a>
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSc3h6o3wSnDpTXhF8q-IQ_1ZHhOACUj-nkiGbcACM7rewexnA/viewform"
+                           target="_blank">AI 컨설턴트 신청하기</a>
                     </div>
                 </div>
+                <!-- //svc_disb -->
                 <!-- //svc_disb -->
             </div>
             <!-- //.content -->
@@ -425,8 +498,8 @@
                             <a href="https://mindslab.ai:8080/kr/company" class="co_link "
                                target="_blank">회사소개</a>
                             &nbsp;&nbsp;|&nbsp;&nbsp;
-                            <a href="/home/krTermsMain" class="co_link " target="_blank">이용약관</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-                            <a href="/home/krTermsMain#conditions" class="co_link " target="_blank">개인정보처리방침</a>
+                            <a href="https://maum.ai/home/krTermsMain" class="co_link " target="_blank">이용약관</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                            <a href="https://maum.ai/home/krTermsMain#conditions" class="co_link " target="_blank">개인정보처리방침</a>
                         </p>
 
                     </div>
@@ -606,19 +679,30 @@
                     }, 500);
                 });
 
+                $('.courseBox ul li ul li.unauth a').on('click', function (e) {
+                    $('.altBox').css('display', 'block');
+
+
+                    $('#alt_loginMessage .btnBox.sz_small .btn_cancel').on('click', function () {
+                        $('.altBox').css('display', 'none');
+                    })
+
+                    e.preventDefault()
+                })
+
             });
+
             $('#goToLogin').click(function (e) {
                 e.preventDefault();// add this line
                 window.location.href = [[${@environment.getProperty('url.hq')}]] + "/maum/loginMain?response_type=code&client_id="
                     + [[${@environment.getProperty('sso.client-id')}]] + "&redirect_uri="
                     + [[${@environment.getProperty('sso.callback')}]]
-                // alert()
-                // window.location.href = "https://sso.maum.ai/maum/loginMain?response_type=code&client_id=maumAcademy&redirect_uri=https://maumacademy.maum.ai/auth/callback";
             })
-
-            $('.courseBox ul li ul li.unauth a').click(function (e) {
-                alert("로그인 후 접속할수있습니다.")
-                e.preventDefault()
+            $('.login').click(function (e) {
+                e.preventDefault();// add this line
+                window.location.href = [[${@environment.getProperty('url.hq')}]] + "/maum/loginMain?response_type=code&client_id="
+                    + [[${@environment.getProperty('sso.client-id')}]] + "&redirect_uri="
+                    + [[${@environment.getProperty('sso.callback')}]]
             })
 
 
@@ -640,24 +724,16 @@
                     alert("내용을 모두 입력해야 이메일을 전달할 수 있어요!");
 
                 } else {
-                    var noti;
+                    var noti = "maum.ai 아카데미(KR)";
 
                     var param = location.search;
                     var host = window.location.hostname;
                     var pathname = window.location.pathname;
 
-                    if (pathname == "/home/pricingPage") {
-                        noti = "maum.ai Enterprise 가격 문의(KR)";
-                    } else if (pathname == "/home/krEcomindsMain") {
-                        noti = "maum.ai ecoMINDs(KR)";
-                    } else if (pathname == "/home/academyForm") {
-                        noti = "maum.ai 아카데미(KR)";
-                    } else {
-                        noti = "maum.ai Landing Page(KR)"
-                    }
 
 
-                    let title = "[maum.ai] " + $("#name").val() + "님의 문의 사항입니다.";
+
+                    let title = "[maumacademy.maum.ai] " + $("#name").val() + "님의 문의 사항입니다.";
                     let msg = "이름 : " + $("#name").val() + "<br>이메일 : " + $('#mail').val() + "<br>연락처 : " + $("#phone").val() + "<br>회사명 : " + $("#company").val() + "<br>문의 내용 : " + $("#txt").val()
                         + "<br><br><br>* " + noti + " 에서 보낸 메일입니다.";
 
@@ -667,12 +743,11 @@
                     formData.append('toaddr', 'hello@mindslab.ai');
                     formData.append('subject', title);
                     formData.append('message', msg);
-                    formData.append($("#key").val(), $("#value").val());
 
                     $.ajax({
                         type: 'POST',
                         async: true,
-                        url: 'https://maum.ai/support/sendContactMails',
+                        url: '/support/sendContactMail',
                         // crossDomain: true,
                         dataType: 'text',
                         data: formData,
@@ -692,6 +767,28 @@
 
                             $('#mail_success').fadeIn();
 
+                            //완료메세지
+                            $('body').append(' \
+                              <div class="lyrWrap moment"> \
+                                 <div class="lyr_bg"></div> \
+                                 <div class="lyrBox" >\
+                                    <div class="lyr_mid"> \
+                                        <div class="ani_icoBox"> \
+                                            <img src="images/ani_email_send.gif" alt="접수완료"> \
+                                        </div> \
+                                        <p class="massage">문의가 접수되었습니다.<br>담당자 확인 후 연락드리겠습니다.</p> \
+                                    </div> \
+                                </div> \
+                            </div> \
+			                ');
+
+                            $('.moment, .moment .lyrBox').show();
+                            setTimeout(function () {
+                                $('.moment').addClass('lyr_hide').delay(300).queue(function () {
+                                    $(this).remove();
+                                });
+                            }, 2000);
+                            $('body').css('overflow', '');
                         },
                         error: function (xhr, status, error) {
                             console.log(error);
@@ -719,7 +816,8 @@
             });
 
 
-        });
+        })
+        ;
 
 
     </script>
