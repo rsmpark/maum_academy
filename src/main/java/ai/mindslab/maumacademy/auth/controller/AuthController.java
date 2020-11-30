@@ -1,6 +1,5 @@
 package ai.mindslab.maumacademy.auth.controller;
 
-import ai.mindslab.maumacademy.auth.repository.UserRepository;
 import ai.mindslab.maumacademy.auth.service.AuthService;
 import ai.mindslab.maumacademy.auth.vo.UserVo;
 import lombok.extern.slf4j.Slf4j;
@@ -37,8 +36,6 @@ public class AuthController {
     @Autowired
     private AuthService service;
 
-    @Autowired
-    private UserRepository userRepository;
 
     @RequestMapping(value="/login")
     public String login(HttpServletRequest request, HttpServletResponse response) {
@@ -74,7 +71,6 @@ public class AuthController {
         UserVo user = service.getAuthToken(code, state, OAUTH_CALLBACK_URI);
         if(user != null) {
             request.getSession().setAttribute("user", user);
-            userRepository.insertUser(user);
         }
         else {
             request.getSession().removeAttribute("user");

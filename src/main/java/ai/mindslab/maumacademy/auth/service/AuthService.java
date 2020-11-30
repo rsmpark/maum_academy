@@ -2,7 +2,6 @@ package ai.mindslab.maumacademy.auth.service;
 
 import ai.mindslab.maumacademy.auth.domain.Auth;
 import ai.mindslab.maumacademy.auth.repository.AuthRepository;
-import ai.mindslab.maumacademy.auth.repository.UserRepository;
 import ai.mindslab.maumacademy.auth.vo.TokenVo;
 import ai.mindslab.maumacademy.auth.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +15,6 @@ import javax.servlet.http.HttpSession;
 public class AuthService {
     @Autowired
     AuthRepository auth_repository;
-
-    @Autowired
-    UserRepository user_repository;
 
     @Autowired
     SSOService sso;
@@ -39,7 +35,6 @@ public class AuthService {
             auth_repository.deleteAuth(token.getEmail());
             auth_repository.insertAuth(token);
 
-            //TODO: user가 null. user database를 maum.ai에서 data를 가져오는게 맞는것으로 생각.
             UserVo userVo = UserVo.builder().email(token.getEmail()).name(token.getName()).build();
             // Token --> UserVo DB save
             return userVo;
