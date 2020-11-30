@@ -4,7 +4,6 @@ $(document).ready(function () {
     //etc layer open
     $('.maum_etc .nav>li>a').on('click', function () {
         $(this).parent().toggleClass('active');
-        return false;
     });
 
     //etc layer close
