@@ -10,7 +10,8 @@ spring:
 
 
   datasource:
-    url: jdbc:mysql://canada-tts.c4jrgbteu2g3.ca-central-1.rds.amazonaws.com/maumacademy
+#    url: jdbc:mysql://canada-tts.c4jrgbteu2g3.ca-central-1.rds.amazonaws.com/maumacademy
+    url: jdbc:mysql://canada-tts.cjw9kegbaf8s.ap-northeast-2.rds.amazonaws.com/maumacademy
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: minds
     password: msl1234~
