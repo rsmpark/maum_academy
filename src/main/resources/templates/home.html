@@ -58,18 +58,15 @@
     </form>
 
     <!-- 알림_로그인 -->
-    <div id="alt_loginMessage" class="altBox">
+    <div id="alt_message" class="altBox">
         <div class="msgBox">
             <dl>
-                <dt>로그인이 필요한 서비스 입니다.</dt>
-                <dd>로그인 하시겠습니까?</dd>
+                <dt>For demo purposes, all private media attachments (audio and video files) have been removed</dt>
+                <dd>You can still access other public contents such as PDFs and Youtube videos</dd>
             </dl>
         </div>
         <div class="btnBox sz_small">
-            <button class="btn_cancel">취소</button>
-            <a href="#"
-               class="btn_clr login">확인</a>
-            <!-- [D] 확인 클릭 시, 통합로그인으로 이동, 인증 완료 되면 콘텐츠 페이지로 이동 -->
+            <button class="btn_cancel">Okay</button>
         </div>
     </div>
     <!-- 알림_서비스이용불가 -->
@@ -212,7 +209,7 @@
                 <!-- svc_visual -->
                 <div class="svc_visual">
                     <dl>
-                        <dt>maum Academy</dt>
+                        <dt>maum Academy DEMO</dt>
                         <dd>AI 종합 교육 플랫폼</dd>
                     </dl>
                     <p class="bg_img"><img th:src="@{images/img_visual01.jpg}" alt="마음아카데미 이미지"></p>
@@ -717,6 +714,10 @@
                         scrollTop: ojtOffset - winHeight,
                     }, 500);
                 });
+
+                $('#alt_message .btnBox.sz_small .btn_cancel').on('click', function () {
+                    $('#alt_message').css('display', 'none');
+                })
 
                 $('.courseBox ul li ul li.unauth a').on('click', function (e) {
                     $('#alt_loginMessage').css('display', 'block');

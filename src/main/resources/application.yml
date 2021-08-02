@@ -1,7 +1,6 @@
 spring:
   profiles:
-#    active: "local"
-          active: "dev"
+    active: "local"
   thymeleaf:
     cache: false
     check-template: true
@@ -10,7 +9,7 @@ spring:
     enabled: true
     encoding: UTF-8
   resources:
-    static-locations: file:C:/Users/smpar/Desktop/mediaAtt/, classpath:/static
+    static-locations: file:C:/Users/smpar/Desktop/maum/mediaAtt/, classpath:/static
 
 
   mvc:
@@ -20,10 +19,10 @@ spring:
     name: maumAcademy
 
   datasource:
-    url: jdbc:mysql://localhost:3307/maumacademy
+    url: jdbc:mysql://us-cdbr-east-04.cleardb.com/heroku_ead0d14e7ff9aa3
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: root
-    password: 365214
+    username: bfda0896dfbd0f
+    password: 9faba9b3
   jpa:
     hibernate:
       ddl-auto: update

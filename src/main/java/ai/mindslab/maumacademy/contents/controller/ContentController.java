@@ -25,10 +25,10 @@ public class ContentController {
                                    @RequestParam(name = "course") Integer courseId, HttpServletRequest request) {
 
         ModelAndView modelAndView = new ModelAndView();
-        if(request.getSession().getAttribute("user") == null){
-            modelAndView.setViewName("redirect:/");
-            return modelAndView;
-        }
+//        if(request.getSession().getAttribute("user") == null){
+//            modelAndView.setViewName("redirect:/");
+//            return modelAndView;
+//        }
 
 
         final List<Content> relatedContents = contentService.getContentsByCourseId(courseId);
